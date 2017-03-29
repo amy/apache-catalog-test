@@ -2,6 +2,8 @@ version: '2'
 services:
   apache-server:
     image: httpd:2.4.25
+    depends_on: 
+      - php
     ports:
       - "8080:80"
     volumes:
