@@ -1,16 +1,18 @@
 version: '2'
 services:
-    php:
-      image:php:latest
+  php:
+    image:php:latest
 
-    # httpd
-    apache-server:
-      image: httpd:2.4.25
-      container_name: apache-server
-      ports:
-        - "8080:80"
-      links:
-        - php
+  # httpd
+  apache-server:
+    image: httpd:2.4.25
+    container_name: apache-server
+    ports:
+      - "8080:80"
+    volumes:
+      - /var/run/docker.sock:/tmp/docker.sock:ro
+    links:
+      - php
 
 volumes:
   apache-data:
