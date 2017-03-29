@@ -1,7 +1,5 @@
 version: '2'
 services:
-  php:
-    image: php:latest
   apache-server:
     image: httpd:2.4.25
     container_name: apache-server
@@ -11,7 +9,7 @@ services:
       - /var/run/docker.sock:/tmp/docker.sock:ro
     links:
       - php
-
-volumes:
-  apache-data:
-    driver: local
+  php:
+    image: php:latest
+    volumes:
+      - /var/run/docker.sock:/tmp/docker.sock:ro
