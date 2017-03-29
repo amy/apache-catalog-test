@@ -1,0 +1,4 @@
+version: '2'
+services:
+    apache-server:
+      image: httpd:2.4.25
