@@ -1,8 +1,6 @@
 version: '2'
 services:
-  apache-server:
-    image: httpd
-    ports:
-      - "8080:80"
+  php:
+    image: php:latest
     volumes:
       - /var/run/docker.sock:/tmp/docker.sock:ro
