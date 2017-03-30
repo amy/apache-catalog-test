@@ -4,5 +4,3 @@ services:
     image: httpd:2.4.25
     ports:
       - "8080:80"
-    volumes:
-      - /var/run/docker.sock:/tmp/docker.sock:ro
