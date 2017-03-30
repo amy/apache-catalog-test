@@ -1,6 +1,6 @@
 version: '2'
 services:
-  php:
-    image: php:latest
+  apache-server:
+    image: httpd:latest
     volumes:
       - /var/run/docker.sock:/tmp/docker.sock:ro
