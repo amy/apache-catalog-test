@@ -1,6 +1,9 @@
 version: '2'
 services:
-  apache-server:
+  apache:
     image: httpd:2.4.25
+    container_name: apache
     ports:
       - "8080:80"
+    volumes:
+      - /var/run/docker.sock:/tmp/docker.sock:ro
