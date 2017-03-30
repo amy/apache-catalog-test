@@ -1,8 +1,7 @@
 version: '2'
 services:
   apache-server:
-    image: httpd:latest
-    container_name: apache-server
+    image: httpd
     ports:
       - "8080:80"
     volumes:
