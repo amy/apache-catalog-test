@@ -8,9 +8,9 @@ services:
     scale: 1
     lb_config:
       port_rules:
-      - source_port: 80
-        target_port: 8080
-        service: apache
+        - source_port: 80
+          target_port: 8080
+          service: apache
     health_check:
       port: 42
       interval: 2000
