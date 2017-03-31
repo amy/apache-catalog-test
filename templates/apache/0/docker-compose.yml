@@ -4,10 +4,6 @@ services:
     image: php:apache
     volumes:
       - content:/var/www/html/
-  apache-lb:
-    image: rancher/lb-service-haproxy:latest
-    ports:
-      - 81
 
 volumes: 
   content:
