@@ -4,8 +4,6 @@ services:
     image: php:apache
     volumes:
       - content:/var/www/html/
-    ports:
-      - "8080:80"
 volumes: 
   content:
     driver: rancher-nfs
