@@ -2,7 +2,3 @@ version: '2'
 catalog:
   name: Apache
   version: 2017-03-29-rancher1
-
-services:
-  apache:
-    scale: 2
