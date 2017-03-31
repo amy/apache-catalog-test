@@ -4,7 +4,9 @@ catalog:
   version: 2017-03-29-rancher1
 
 services:
-  apachelb:
+  apache:
+    scale: 2
+  apache-lb:
     scale: 1
     lb_config:
       port_rules:
