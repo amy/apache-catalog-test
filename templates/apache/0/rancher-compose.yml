@@ -2,10 +2,23 @@ version: '2'
 catalog:
   name: Apache
   version: 2017-03-29-rancher1
+  questions:
+    - variable: "VOLUME_DRIVER"
+      description: "Docker driver to store volume or base path for each disk"
+      label: "Volume driver / Path"
+      type: "string"
+      required: true
+      default: "local"
+    - variable: "APACHE_SCALE"
+      description: "Number of apache nodes."
+      label: "Apache Nodes"
+      required: true
+      default: 1
+      type: int
 
 services:
   apache:
-    scale: 1
+    scale: ${APACHE_SCALE}
   apache-lb:
     scale: 1
     lb_config:

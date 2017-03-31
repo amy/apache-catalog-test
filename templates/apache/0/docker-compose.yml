@@ -8,7 +8,10 @@ services:
     image: rancher/lb-service-haproxy:latest
     ports:
       - 80
+    links:
+      - apache
 
 volumes: 
   content:
-    driver: rancher-nfs
+    driver: ${VOLUME_DRIVER}
+    external: true
