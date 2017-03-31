@@ -11,7 +11,7 @@ services:
     lb_config:
       port_rules:
         - source_port: 80
-          target_port: 8080
+          target_port: 80
           service: apache
     health_check:
       port: 42
