@@ -6,3 +6,8 @@ catalog:
 services:
   apache:
     scale: 1
+  apache-lb:
+    scale: 1
+    lb_config:
+      port_rules:
+        - source_port: 80
