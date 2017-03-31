@@ -4,14 +4,21 @@ catalog:
   version: 2017-03-29-rancher1
   questions:
     - variable: "VOLUME_DRIVER"
-      description: "Docker driver or base path"
-      label: "Volume Driver"
+      description: "Docker driver or base path."
+      label: "Volume driver or path"
       type: "string"
-      required: true 
+      required: true
+      default: "local"
+    - variable: "APACHE_SCALE"
+      description: "Number of minio nodes."
+      label: "Apache nodes"
+      type: int
+      required: true
+      default: 1
 
 services:
   apache:
-    scale: 1
+    scale: ${APACHE_SCALE}
   apache-lb:
     scale: 1
     lb_config:
