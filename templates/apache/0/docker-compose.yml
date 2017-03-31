@@ -14,3 +14,4 @@ services:
 volumes: 
   content:
     driver: rancher-nfs
+    external: true
