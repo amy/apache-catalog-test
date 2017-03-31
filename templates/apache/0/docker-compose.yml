@@ -4,11 +4,11 @@ services:
     image: php:apache
     volumes:
       - content:/var/www/html/
-  apache-lb:
+  apachelb:
     image: rancher/lb-service-haproxy:latest
     ports:
       - 80
-      
+
 volumes: 
   content:
     driver: rancher-nfs
