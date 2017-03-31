@@ -2,6 +2,12 @@ version: '2'
 catalog:
   name: Apache
   version: 2017-03-29-rancher1
+  questions:
+    - variable: "VOLUME_DRIVER"
+      description: "Docker driver or base path"
+      label: "Volume Driver"
+      type: "string"
+      required: true 
 
 services:
   apache:
