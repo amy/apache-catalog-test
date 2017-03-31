@@ -1,13 +1,15 @@
 version: '2'
 services:
-  httpd:
-    image: httpd:2.4.25
+  apache:
+    image: php:apache
+    volumes:
+      - content:/var/www/html/
     ports:
       - "8080:80"
-    volumes:
-      - /var/run/docker.sock:/tmp/docker.sock:ro
-  whoami:
-    image: jwilder/whoami
-    container_name: whoami
-    environment:
-      - VIRTUAL_HOST=whoami.local
+  apache-lb:
+    image: rancher/lb-service-haproxy:latest
+    ports:
+      - 80
+volumes: 
+  content:
+    driver: rancher-nfs
