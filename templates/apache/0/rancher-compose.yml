@@ -6,5 +6,3 @@ catalog:
 services:
   apache:
     scale: 1
-  apache-lb:
-    scale: 1
