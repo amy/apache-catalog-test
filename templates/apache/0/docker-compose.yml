@@ -5,11 +5,7 @@ services:
     volumes:
       - content:/var/www/html/
     ports:
-      - "8080:80"
-  apache-lb:
-    image: rancher/lb-service-haproxy:latest
-    ports:
-      - 80
+      - "5000:5000"
 volumes: 
   content:
     driver: rancher-nfs
