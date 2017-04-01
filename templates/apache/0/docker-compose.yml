@@ -11,5 +11,5 @@ services:
 
 volumes: 
   content:
-    driver: rancher-nfs
+    driver: ${VOLUME_DRIVER}
     external: true
