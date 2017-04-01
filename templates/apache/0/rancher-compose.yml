@@ -3,12 +3,6 @@ catalog:
   name: Apache
   version: 2017-03-29-rancher1
   questions:
-    - variable: "VOLUME_DRIVER"
-      description: "Docker driver or base path."
-      label: "Volume driver or path"
-      type: "string"
-      required: true
-      default: "local"
     - variable: "APACHE_SCALE"
       description: "Number of minio nodes."
       label: "Apache nodes"
