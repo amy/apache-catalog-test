@@ -12,3 +12,4 @@ services:
 volumes: 
   content:
     driver: ${VOLUME_DRIVER}
+    external: true
