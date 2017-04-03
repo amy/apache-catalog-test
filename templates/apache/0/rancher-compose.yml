@@ -1,6 +1,6 @@
 version: '2'
 catalog:
-  name: Apache
+  name: Apache (Unencrypted)
   version: v4.3.17-rancher1
   questions:
     - variable: "APACHE_SCALE"
@@ -29,24 +29,15 @@ catalog:
       options:
         - http
         - tcp
-        - https
-        - tls
-        - sni
-    - variable: "CERT_NAME"
-      description: "Specifiy certificates"
-      label: "Certificate"
-      type: "string"
-      required: true
-      default: ""
 
 services:
+  {{if contains .Values.APACHE_SCALE}}
   apache:
     scale: ${APACHE_SCALE}
+  {{end}}
   apache-lb:
     scale: 1
     lb_config:
-      certs:
-        - ${CERT_NAME}
       port_rules:
         - source_port: 80
           target_port: 80
