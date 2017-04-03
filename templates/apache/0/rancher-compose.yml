@@ -25,14 +25,13 @@ catalog:
       label: "Protocol"
       type: enum
       required: true
-      default: https
       options:
         - https
         - tls
         - sni
     - variable: "CERT_NAME"
-      description: "Provide certificate added in Rancher UI for protocol encryption"
-      label: "Certificate Name"
+      description: "Specify encryption cert for load balancer encryption protocol"
+      label: "Cerificate Name"
       type: "string"
       required: true
 
