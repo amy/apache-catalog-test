@@ -29,15 +29,23 @@ catalog:
       options:
         - http
         - tcp
+    - variable: "CERT_NAME"
+      description: "Specify your load balancer communication protocol"
+      label: "Cert"
+      type: "string"
+      required: true
+      default: null
+
+
 
 services:
-  {{if contains .Values.APACHE_SCALE}}
   apache:
     scale: ${APACHE_SCALE}
-  {{end}}
   apache-lb:
     scale: 1
     lb_config:
+      certs:
+        - ${CERT_NAME}
       port_rules:
         - source_port: 80
           target_port: 80
