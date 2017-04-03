@@ -25,18 +25,16 @@ catalog:
       label: "Protocol"
       type: enum
       required: true
-      default: http
+      default: https
       options:
-        - http
-        - tcp
+        - https
+        - tls
+        - sni
     - variable: "CERT_NAME"
-      description: "Specify your load balancer communication protocol"
-      label: "Cert"
+      description: "Provide certificate added in Rancher UI for protocol encryption"
+      label: "Certificate Name"
       type: "string"
-      required: false
-      default: null
-
-
+      required: true
 
 services:
   apache:
@@ -44,8 +42,6 @@ services:
   apache-lb:
     scale: 1
     lb_config:
-      certs:
-        - ${CERT_NAME}
       port_rules:
         - source_port: 80
           target_port: 80

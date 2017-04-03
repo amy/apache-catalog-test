@@ -8,6 +8,8 @@ services:
     image: rancher/lb-service-haproxy:v0.6.4
     ports:
       - ${PUBLISH_PORT}:80
+    certs:
+      - ${CERT_NAME}
 
 volumes: 
   content:
