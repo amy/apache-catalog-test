@@ -4,7 +4,7 @@ catalog:
   version: 2017-03-29-rancher1
   questions:
     - variable: "APACHE_SCALE"
-      description: "Number of Apache nodes."
+      description: "Number of Apache nodes"
       label: "Apache nodes"
       type: int
       required: true
@@ -14,6 +14,12 @@ catalog:
       label: "Volume Driver"
       type: "string"
       default: "local"
+    - variable: "PUBLISH_PORT"
+      description: "Customize your external publish port, defaults to port 80"
+      label: "Publish Port"
+      type: int
+      required: false
+      default: 80
 
 services:
   apache:
