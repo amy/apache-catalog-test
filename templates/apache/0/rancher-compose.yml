@@ -20,6 +20,24 @@ catalog:
       type: int
       required: false
       default: 80
+    - variable: "PROTOCOL"
+      description: "Specify your load balancer communication protocol"
+      label: "Protocol"
+      type: enum
+      required: true
+      default: http
+      options:
+        - http
+        - tcp
+        - https
+        - tls
+        - sni
+    - variable: "CERT_NAME"
+      description: "Specifiy certificates"
+      label: "Certificate"
+      type: string
+      required: true
+      default: []
 
 services:
   apache:
@@ -27,10 +45,13 @@ services:
   apache-lb:
     scale: 1
     lb_config:
+      certs:
+        - ${CERT_NAME}
       port_rules:
         - source_port: 80
           target_port: 80
           service: apache
+          protocol: ${PROTOCOL}
     health_check:
       port: 42
       interval: 2000
