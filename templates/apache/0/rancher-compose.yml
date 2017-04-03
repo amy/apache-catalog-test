@@ -35,7 +35,7 @@ catalog:
     - variable: "CERT_NAME"
       description: "Specifiy certificates"
       label: "Certificate"
-      type: string
+      type: "string"
       required: true
       default: []
 
