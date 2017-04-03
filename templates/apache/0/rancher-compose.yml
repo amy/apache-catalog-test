@@ -37,7 +37,7 @@ catalog:
       label: "Certificate"
       type: "string"
       required: true
-      default: "[]"
+      default: ""
 
 services:
   apache:
