@@ -26,9 +26,7 @@ catalog:
       type: enum
       required: true
       options:
-        - https
-        - tls
-        - sni
+        - http
     - variable: "CERT_NAME"
       description: "Specify encryption cert for load balancer encryption protocol"
       label: "Cerificate Name"
