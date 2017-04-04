@@ -7,8 +7,8 @@ catalog:
       description: "Number of Apache nodes"
       label: "Apache nodes"
       type: int
-      default: 1
       required: true
+      default: 1
     - variable: "VOLUME_DRIVER"
       description: "Docker volume driver"
       label: "Volume Driver"
@@ -25,14 +25,25 @@ catalog:
       label: "Protocol"
       type: enum
       required: true
+      default: http
       options:
         - http
-    - variable: "CERT_NAME"
-      description: "Specify encryption cert for load balancer encryption protocol"
-      label: "Cerificate Name"
-      type: "string"
-      required: true
+        - tcp
 
 services:
   apache:
     scale: ${APACHE_SCALE}
+  apache-lb:
+    scale: 1
+    lb_config:
+      port_rules:
+        - source_port: 80
+          target_port: 80
+          service: apache
+          protocol: ${PROTOCOL}
+    health_check:
+      port: 42
+      interval: 2000
+      unhealthy_threshold: 3
+      healthy_threshold: 2
+      response_timeout: 2000
