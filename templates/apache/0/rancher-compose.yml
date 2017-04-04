@@ -7,6 +7,7 @@ catalog:
       description: "Number of Apache nodes"
       label: "Apache nodes"
       type: int
+      default: 1
       required: true
     - variable: "VOLUME_DRIVER"
       description: "Docker volume driver"
@@ -33,3 +34,7 @@ catalog:
       label: "Cerificate Name"
       type: "string"
       required: true
+
+services:
+  apache:
+    scale: ${APACHE_SCALE}
