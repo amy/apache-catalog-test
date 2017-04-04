@@ -29,3 +29,7 @@ catalog:
       options:
         - http
         - tcp
+
+services:
+  apache:
+    scale: ${APACHE_SCALE}
