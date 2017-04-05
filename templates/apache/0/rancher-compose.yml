@@ -32,7 +32,7 @@ catalog:
 
 services:
   apache:
-    scale: ${APACHE_SCALE}
+    scale: 1
   apache-lb:
     scale: 1
     lb_config:
@@ -40,7 +40,7 @@ services:
         - source_port: 80
           target_port: 81
           service: apache
-          protocol: ${PROTOCOL}
+          protocol: http
     health_check:
       port: 42
       interval: 2000
