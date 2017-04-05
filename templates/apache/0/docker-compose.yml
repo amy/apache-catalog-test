@@ -8,14 +8,14 @@ services:
   apache-lb:
     image: rancher/lb-service-haproxy:v0.6.4
     ports:
-      - ${PUBLISH_PORT}:80
+      - {{.Values.PUBLISH_PORT}}:80
     scale: 1
     lb_config:
       port_rules:
         - source_port: 80
           target_port: 80
           service: apache
-          protocol: ${PROTOCOL}
+          protocol: {{.Values.PROTOCOL}
     health_check:
       port: 42
       interval: 2000
