@@ -31,3 +31,17 @@ catalog:
       options:
         - http
         - tcp
+        - https
+        - tls
+        - sni
+        - custom
+    - variable: "CERT_NAME"
+      description: "Specify certificate name created in Rancher UI"
+      label: "Certificate Name"
+      type: certificate
+      required: false
+    - variable: "CUSTOM"
+      description: "Enter your custom config here"
+      label: "Custom config"
+      type: multiline
+      required: false
