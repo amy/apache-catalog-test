@@ -40,8 +40,3 @@ catalog:
       label: "Certificate Name"
       type: certificate
       required: false
-    - variable: "CUSTOM"
-      description: "Enter your custom config here"
-      label: "Custom config"
-      type: multiline
-      required: false

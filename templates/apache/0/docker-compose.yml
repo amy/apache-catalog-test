@@ -28,3 +28,11 @@ services:
 volumes: 
   content:
     driver: {{.Values.VOLUME_DRIVER}}
+
+catalog:
+  questions:
+    - variable: "CUSTOM"
+      description: "Enter your custom config here"
+      label: "Custom config"
+      type: multiline
+      required: false
