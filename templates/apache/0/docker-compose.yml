@@ -11,13 +11,13 @@ services:
       - {{.Values.PUBLISH_PORT}}:80
     scale: 1
     lb_config:
-      {{- if .Values.PROTOCOL not "custom"}}
+    {{- if .Values.PROTOCOL not "custom"}}
       port_rules:
         - source_port: 80
           target_port: 80
           service: apache
           protocol: {{.Values.PROTOCOL}}
-      {{- end}}
+    {{- end}}
     health_check:
       port: 42
       interval: 2000
