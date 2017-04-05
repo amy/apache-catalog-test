@@ -3,7 +3,7 @@ services:
   apache:
     image: php:7.1.3-apache
     volumes:
-      - /root/data:/var/www/html
+      - content:/var/www/html
     scale: {{.Values.APACHE_SCALE}}
   apache-lb:
     image: rancher/lb-service-haproxy:v0.6.4
@@ -31,3 +31,7 @@ services:
       unhealthy_threshold: 3
       healthy_threshold: 2
       response_timeout: 2000
+
+volumes: 
+  content:
+    driver: ${VOLUME_DRIVER}
