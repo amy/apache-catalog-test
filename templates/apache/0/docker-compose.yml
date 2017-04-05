@@ -17,13 +17,6 @@ services:
           target_port: 80
           service: apache
           protocol: {{.Values.PROTOCOL}}
-      {{- if (.Values.PROTOCOL eq "http" or .Values.PROTOCOL eq "tcp")}}
-      certs:
-        - {{.Values.CERT_NAME}}
-      {{- end}}
-      {{- else}}
-      config: |-
-        {{.Values.CUSTOM}}
       {{- end}}
     health_check:
       port: 42
@@ -34,4 +27,4 @@ services:
 
 volumes: 
   content:
-    driver: ${VOLUME_DRIVER}
+    driver: {{.Values.VOLUME_DRIVER}}
