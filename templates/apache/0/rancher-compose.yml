@@ -40,10 +40,8 @@ catalog:
       label: "Certificate Name"
       type: certificate
       required: false
-    {{if not (contains .Values.PROTOCOL "custom")}}
     - variable: "CUSTOM"
       description: "Enter your custom config here"
       label: "Custom config"
       type: multiline
       required: false
-    {{end}}
