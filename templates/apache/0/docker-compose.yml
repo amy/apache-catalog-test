@@ -12,9 +12,9 @@ services:
     scale: 1
     {{if not (contains .Values.PROTOCOL "custom")}}
     lb_config:
-      {{if (contains .Values.PROTOCOL "https") or (contains .Values.PROTOCOL "tls") or (contains .Values.PROTOCOL "sni")}}
+      {{if (contains .Values.PROTOCOL "https")}}
       certs:
-        - blah
+        - {{.Values.CERT_NAME}}
       {{end}}
       port_rules:
         - source_port: 80
