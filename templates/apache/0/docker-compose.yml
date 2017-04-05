@@ -22,7 +22,7 @@ services:
           service: apache
           protocol: {{.Values.PROTOCOL}}
     {{else}}
-
+      stuff: hello
     {{end}}
     health_check:
       port: 42
