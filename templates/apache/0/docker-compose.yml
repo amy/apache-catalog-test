@@ -15,7 +15,7 @@ services:
         - source_port: 80
           target_port: 80
           service: apache
-          protocol: {{.Values.PROTOCOL}
+          protocol: {{.Values.PROTOCOL}}
     health_check:
       port: 42
       interval: 2000
