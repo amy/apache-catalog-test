@@ -45,9 +45,3 @@ catalog:
       label: "Custom config"
       type: multiline
       required: false
-
-services:
-  apache-lb:
-    lb-config:
-      certs:
-        - blah
