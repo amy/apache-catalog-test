@@ -4,7 +4,7 @@ services:
     tty: true
     stdin_open: true
     image: php:7.1.3-apache
-    command: touch /etc/apache2/sites-available/apache.conf
+    command: sudo touch /etc/apache2/sites-available/apache.conf
     volumes:
       - content:/var/www/html
     scale: {{.Values.APACHE_SCALE}}
