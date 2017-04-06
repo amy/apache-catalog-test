@@ -24,7 +24,7 @@ services:
           protocol: {{.Values.PROTOCOL}}
       {{end}}
     {{else}}
-      config: |-
+      config:
       {{.Values.PROTOCOL}}
     {{end}}
     health_check:
