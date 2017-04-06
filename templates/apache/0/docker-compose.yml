@@ -7,11 +7,6 @@ services:
     volumes:
       - content:/var/www/html
     scale: {{.Values.APACHE_SCALE}}
-    labels:
-      io.rancher.sidekicks: apache-config
-  apache-config:
-    tty: true
-    image: amycodes/apache-config:latest
 
 volumes:
   content:
