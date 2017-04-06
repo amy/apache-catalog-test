@@ -12,17 +12,13 @@ services:
     scale: 1
     {{if not (contains .Values.PROTOCOL "custom")}}
     lb_config:
-      {{if (contains .Values.PROTOCOL "https")}}
-      certs:
-        - {{.Values.CERT_NAME}}
-      {{end}}
+      {{if (contains .Values.PROTOCOL "http")}}
       port_rules:
         - source_port: 80
           target_port: 80
           service: apache
           protocol: {{.Values.PROTOCOL}}
-    {{else}}
-      stuff: hello
+      {{end}}
     {{end}}
     health_check:
       port: 42
