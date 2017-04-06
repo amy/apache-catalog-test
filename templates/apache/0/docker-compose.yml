@@ -12,9 +12,7 @@ services:
     scale: 1
     lb_config:
       config: |-
-        global
-            maxconn 4096
-            maxpipes 1024
+        ${CUSTOM}
     health_check:
       port: 42
       interval: 2000
