@@ -13,8 +13,8 @@ services:
     {{if not (contains .Values.PROTOCOL "custom")}}
     lb_config:
       {{if (contains .Values.PROTOCOL "custom")}}
-      config:
-        - {{.Values.PROTOCOL}}
+      config: |-
+        {{.Values.PROTOCOL}}
       {{end}}
     {{end}}
     health_check:
