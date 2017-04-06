@@ -25,6 +25,7 @@ services:
   apache-data:
     image: ubuntu:16.04
     scale: 1
+    ports: "81:80"
 
 volumes: 
   content:
