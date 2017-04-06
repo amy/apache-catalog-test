@@ -12,17 +12,6 @@ services:
     scale: 1
     {{if not (contains .Values.PROTOCOL "custom")}}
     lb_config:
-      {{if ((contains .Values.PROTOCOL "https") or (contains .Values.PROTOCOL "tls") or (contains .Values.PROTOCOL "sni"))}}
-      certs:
-        - {{.Values.CERT_NAME}}
-      {{end}}
-      {{if ((contains .Values.PROTOCOL "http") or (contains .Values.PROTOCOL "tcp"))}}
-      port_rules:
-        - source_port: 80
-          target_port: 80
-          service: apache
-          protocol: {{.Values.PROTOCOL}}
-      {{end}}
       {{if (contains .Values.PROTOCOL "custom")}}
       config:
         - {{.Values.PROTOCOL}}
