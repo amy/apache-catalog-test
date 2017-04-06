@@ -24,8 +24,8 @@ services:
           protocol: {{.Values.PROTOCOL}}
       {{end}}
     {{else}}
-      config: 
-        - {{.Values.CUSTOM}}
+      config: |-
+      {{.Values.PROTOCOL}}
     {{end}}
     health_check:
       port: 42
