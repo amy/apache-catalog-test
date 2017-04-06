@@ -23,9 +23,10 @@ services:
           service: apache
           protocol: {{.Values.PROTOCOL}}
       {{end}}
-    {{else}}
+      {{if (contains .Values.PROTOCOL "custom")}}
       config:
         - {{.Values.PROTOCOL}}
+      {{end}}
     {{end}}
     health_check:
       port: 42
