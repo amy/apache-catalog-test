@@ -4,17 +4,17 @@ services:
     tty: true
     stdin_open: true
     image: php:7.1.3-apache
-    volumes_from:
-      - apache-config
+    volumes:
+      - content:/var/www/html
+      - apache_config:/etc/apache2/sites-available/
     scale: {{.Values.APACHE_SCALE}}
     labels:
       io.rancher.sidekicks: apache-config
   apache-config:
     tty: true
-    image: php:7.1.3-apache
+    image: amycodes/apache-config
     volumes:
-      - content:/var/www/html
-      - apache_config:/etc/apache2/sites-available
+      - apache_config:/root
     stdin_open: true
   apache-lb:
     image: rancher/lb-service-haproxy:v0.6.4
@@ -33,12 +33,6 @@ services:
       unhealthy_threshold: 3
       healthy_threshold: 2
       response_timeout: 2000
-  apache-data:
-    tty: true
-    image: ubuntu:14.04
-    volumes:
-      - content:/root/content
-      - apache_config:/root/apache_config
 
 volumes:
   content:
