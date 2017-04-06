@@ -23,10 +23,9 @@ services:
       healthy_threshold: 2
       response_timeout: 2000
   apache-data:
-    command:
-      - cat
     image: ubuntu:14.04.2
-    stdin_open: true
+    volumes:
+      - content:/root/data
 
 volumes:
   content:
