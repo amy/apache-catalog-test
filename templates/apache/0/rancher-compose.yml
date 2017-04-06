@@ -45,3 +45,8 @@ catalog:
       label: "Custom config"
       type: multiline
       required: false
+    - variable: "APACHE_CONF"
+      description: "Enter your apache configuration file here"
+      label: "Apache Configuration"
+      type: multiline
+      required: false
