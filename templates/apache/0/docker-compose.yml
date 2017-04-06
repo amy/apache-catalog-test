@@ -4,8 +4,8 @@ services:
     image: php:7.1.3-apache
     volumes:
       - content:/var/www/html
-    scale: {{.Values.APACHE_SCALE}}
+    scale: 1
 
 volumes:
   content:
-    driver: {{.Values.VOLUME_DRIVER}}
+    driver: local
