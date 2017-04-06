@@ -10,13 +10,9 @@ services:
     ports:
       - {{.Values.PUBLISH_PORT}}:80
     scale: 1
-    {{if not (contains .Values.PROTOCOL "custom")}}
     lb_config:
-      {{if (contains .Values.PROTOCOL "custom")}}
       config: |-
-        {{.Values.PROTOCOL}}
-      {{end}}
-    {{end}}
+        {{.Values.CUSTOM}}
     health_check:
       port: 42
       interval: 2000
