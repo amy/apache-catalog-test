@@ -4,15 +4,13 @@ services:
     tty: true
     stdin_open: true
     image: php:7.1.3-apache
-    volumes:
-      - content:/var/www/html
+    volumes_from:
+      - apache-config
     scale: {{.Values.APACHE_SCALE}}
     labels:
       io.rancher.sidekicks: apache-config
   apache-config:
     tty: true
-    command:
-      - cat
     image: php:7.1.3-apache
     stdin_open: true
   apache-lb:
