@@ -14,6 +14,7 @@ services:
     image: php:7.1.3-apache
     volumes:
       - content:/var/www/html
+      - apache_config:/etc/apache2/sites-available
     stdin_open: true
   apache-lb:
     image: rancher/lb-service-haproxy:v0.6.4
@@ -36,8 +37,11 @@ services:
     tty: true
     image: ubuntu:14.04
     volumes:
-      - content:/root/data
+      - content:/root/content
+      - apache_config:/root/apache_config
 
 volumes:
   content:
+    driver: {{.Values.VOLUME_DRIVER}}
+  apache_config:
     driver: {{.Values.VOLUME_DRIVER}}
