@@ -24,7 +24,7 @@ services:
       response_timeout: 2000
   apache-data:
     tty: true
-    image: ubuntu:16.04
+    image: ubuntu:14.04
     volumes:
       - content:/root/data
 
