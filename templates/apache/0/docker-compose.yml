@@ -11,8 +11,10 @@ services:
       - {{.Values.PUBLISH_PORT}}:80
     scale: 1
     lb_config:
-      config:
-        - {{.Values.PROTOCOL}}
+      config: |-
+        global
+            maxconn 4096
+            maxpipes 1024
     health_check:
       port: 42
       interval: 2000
