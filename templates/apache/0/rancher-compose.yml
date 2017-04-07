@@ -50,3 +50,9 @@ catalog:
       label: "Apache Configuration"
       type: multiline
       required: false
+    - variable: "APACHE_CONFIG_TEST"
+      description: "blah"
+      label: "blah"
+      type: "string"
+      required: true
+      default: "blah"
