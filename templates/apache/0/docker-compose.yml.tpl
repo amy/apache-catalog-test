@@ -12,8 +12,9 @@ services:
       io.rancher.sidekicks: apache-config
   apache-config:
     tty: true
-    image: ubuntu:14.04
-    command: bash -c "touch /etc/apache2/sites-available/apache.conf && echo {{.Values.APACHE_CONF}}"
+    build: https://github.com/amy/apache-config.git
+      args: 
+        apache_config_test: {{.Values.APACHE_CONFIG_TEST}} 
     volumes:
       - config:/root
     stdin_open: true
