@@ -12,7 +12,7 @@ services:
       io.rancher.sidekicks: apache-config
   apache-config:
     tty: true
-    image: amycodes/apache-config:latest
+    build: amycodes/apache-config:latest
     args:
       - apache_config_test: {{.Values.APACHE_CONFIG_TEST}}
     volumes:
