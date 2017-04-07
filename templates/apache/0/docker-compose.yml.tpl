@@ -12,7 +12,8 @@ services:
       io.rancher.sidekicks: apache-config
   apache-config:
     tty: true
-    build: github.com/amy/apache-catalog-test.git
+    build:
+      context: https://github.com/amy/apache-config
       args:
         - apache_config_test: {{.Values.APACHE_CONFIG_TEST}}
     volumes:
