@@ -13,8 +13,8 @@ services:
   apache-config:
     tty: true
     build: amycodes/apache-config:latest
-    args:
-      - apache_config_test: {{.Values.APACHE_CONFIG_TEST}}
+      args:
+        - apache_config_test: {{.Values.APACHE_CONFIG_TEST}}
     volumes:
       - config:/root
     stdin_open: true
