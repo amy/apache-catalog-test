@@ -12,7 +12,7 @@ services:
       io.rancher.sidekicks: apache-config
   apache-config:
     tty: true
-    image: amy/apache-config
+    image: amy/apache-config:latest
     environment:
       - APACHE_CONFIG_TEST=${APACHE_CONFIG_TEST}
     volumes:
