@@ -1,5 +1,5 @@
 version: '2'
-catalog:
+.catalog:
   name: Apache
   version: v4.3.17-rancher1
   description: "Serves PHP web apps populated in volume"
