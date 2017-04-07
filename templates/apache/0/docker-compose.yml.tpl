@@ -12,9 +12,10 @@ services:
       io.rancher.sidekicks: apache-config
   apache-config:
     tty: true
-    build: github.com/amy/apache-config
+    build: 
+      context: https://github.com/amy/apache-config.git
       args: 
-        apache_config_test=${APACHE_CONFIG_TEST}
+        apache_config_test: {{.Values.APACHE_CONFIG_TEST}}
     volumes:
       - config:/root
     stdin_open: true
