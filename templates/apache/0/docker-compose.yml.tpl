@@ -1,70 +1,39 @@
 version: '2'
 services:
-  minio-server:
-    tty: true
-    image: webcenter/alpine-minio:2017-03-16_4
+  apache:
+    image: php:7.1.3-apache
     volumes:
-      - minio-scheduler-setting:/opt/scheduler
-    {{- if contains .Values.VOLUME_DRIVER "/" }}
-      {{- range $idx, $e := atoi .Values.MINIO_DISKS | until }}
-      - {{.Values.VOLUME_DRIVER}}/{{.Values.DISK_BASE_NAME}}{{$idx}}:/data/disk{{$idx}}
-      {{- end}}
-    {{- else}}
-       {{- range $idx, $e := atoi .Values.MINIO_DISKS | until }}
-      - minio-data-{{$idx}}:/data/disk{{$idx}}
-      {{- end}}
-    {{- end}}
-    environment:
-      - MINIO_CONFIG_minio.access.key=${MINIO_ACCESS_KEY}
-      - MINIO_CONFIG_minio.secret.key=${MINIO_SECRET_KEY}
-      - CONFD_BACKEND=${CONFD_BACKEND}
-      - CONFD_NODES=${CONFD_NODES}
-      - CONFD_PREFIX_KEY=${CONFD_PREFIX}
-      {{- range $idx, $e := atoi .Values.MINIO_DISKS | until }}
-      - MINIO_DISKS_{{$idx}}=disk{{$idx}}
-      {{- end}}
-    {{- if (ne .Values.DEPLOY_LB "true") and .Values.PUBLISH_PORT}}
+      - content:/var/www/html
+    scale: {{.Values.APACHE_SCALE}}
+  apache-lb:
+    image: rancher/lb-service-haproxy:v0.6.4
     ports:
-      - ${PUBLISH_PORT}:9000
-    {{- end}}
-    labels:
-      io.rancher.scheduler.affinity:container_label_soft_ne: io.rancher.stack_service.name=$${stack_name}/$${service_name}
-      io.rancher.container.hostname_override: container_name
-      io.rancher.sidekicks: rancher-cattle-metadata
-  rancher-cattle-metadata:
-    network_mode: none
-    labels:
-      io.rancher.scheduler.affinity:container_label_soft_ne: io.rancher.stack_service.name=$${stack_name}/$${service_name}
-      io.rancher.container.hostname_override: container_name
-      io.rancher.container.start_once: "true"
-    image: webcenter/rancher-cattle-metadata:1.0.1
-    volumes:
-      - minio-scheduler-setting:/opt/scheduler
-  {{- if eq .Values.DEPLOY_LB "true"}}
-  lb:
-    image: rancher/lb-service-haproxy:v0.6.2
-    {{- if .Values.PUBLISH_PORT}}
-    ports:
-      - ${PUBLISH_PORT}:9000/tcp
-    {{- else}}
-    expose:
-      - 9000:9000/tcp
-    {{- end}}
-    links:
-      - minio-server:minio-server
-    labels:
-      io.rancher.container.agent.role: environmentAdmin
-      io.rancher.container.create_agent: 'true'
-  {{- end}}
+      - {{.Values.PUBLISH_PORT}}:80
+    scale: 1
+    lb_config:
+    {{if not (eq .Values.PROTOCOL "custom")}}
+      {{if ((eq .Values.PROTOCOL "https") or (eq .Values.PROTOCOL "tls") or (eq .Values.PROTOCOL "sni"))}}
+      certs:
+        - {{.Values.CERT_NAME}}
+      {{end}}
+      {{if ((eq .Values.PROTOCOL "http") or (eq .Values.PROTOCOL "tcp"))}}
+      port_rules:
+        - source_port: 80
+          target_port: 80
+          service: apache
+          protocol: {{.Values.PROTOCOL}}
+      {{end}}
+    {{else}}
+      config: |-
+        ${CUSTOM}
+    {{end}}
+    health_check:
+      port: 42
+      interval: 2000
+      unhealthy_threshold: 3
+      healthy_threshold: 2
+      response_timeout: 2000
 
-volumes:
-  minio-scheduler-setting:
-    driver: local
-    per_container: true
-  {{- if not (contains .Values.VOLUME_DRIVER "/")}}
-    {{- range $idx, $e := atoi .Values.MINIO_DISKS | until }}
-  minio-data-{{$idx}}:
-    per_container: true
-    driver: ${VOLUME_DRIVER}
-    {{- end}}
-  {{- end}}
+volumes: 
+  content:
+    driver: {{.Values.VOLUME_DRIVER}}
