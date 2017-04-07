@@ -13,7 +13,7 @@ services:
   apache-config:
     tty: true
     build:
-      context: "https://github.com/amy/apache-config"
+      context: https://github.com/amy/apache-config
       args:
         - apache_config_test: {{.Values.APACHE_CONFIG_TEST}}
     volumes:

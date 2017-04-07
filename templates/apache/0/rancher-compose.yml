@@ -53,5 +53,5 @@ catalog:
     - variable: "APACHE_CONFIG_TEST"
       description: "blah"
       label: "blah"
-      type: multiline
+      type: "string"
       required: true
