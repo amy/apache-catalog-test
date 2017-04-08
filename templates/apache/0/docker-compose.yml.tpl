@@ -20,6 +20,7 @@ services:
     stdin_open: true
     labels:
       io.rancher.container.pull_image: always
+      io.rancher.container.start_once: true
   apache-lb:
     image: rancher/lb-service-haproxy:v0.6.4
     ports:
