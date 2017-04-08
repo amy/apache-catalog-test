@@ -18,6 +18,8 @@ services:
     volumes:
       - config:/root
     stdin_open: true
+    labels:
+      io.rancher.container.pull_image: always
   apache-lb:
     image: rancher/lb-service-haproxy:v0.6.4
     ports:
