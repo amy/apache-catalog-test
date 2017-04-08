@@ -15,7 +15,7 @@ services:
     image: amycodes/apache-config:latest
     environment:
       APACHE_CONFIG_TEST: |
-        ${APACHE_CONFIG_TEST}
+        {{.Values.APACHE_CONFIG_TEST}}
     volumes:
       - config:/root
     stdin_open: true
