@@ -14,7 +14,7 @@ services:
     tty: true
     image: amycodes/apache-config:latest
     environment:
-      APACHE_CONF: |
+      apache_conf: |
         ${APACHE_CONF}
     volumes:
       - config:/root
