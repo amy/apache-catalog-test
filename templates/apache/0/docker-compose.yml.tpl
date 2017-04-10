@@ -32,7 +32,7 @@ services:
   apache-lb:
     image: rancher/lb-service-haproxy:v0.6.4
     ports:
-      - 443:443
+      - "80:80"
     scale: 1
     lb_config:
     {{if (eq .Values.PROTOCOL "custom")}}
@@ -43,7 +43,7 @@ services:
       default_cert: {{.Values.CERT_NAME}}
       {{end}}
       port_rules:
-        - source_port: 443
+        - source_port: 80
           target_port: 80
           service: apache
           protocol: {{.Values.PROTOCOL}}
