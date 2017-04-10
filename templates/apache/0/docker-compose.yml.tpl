@@ -4,7 +4,6 @@ services:
     tty: true
     stdin_open: true
     image: php:7.1.3-apache
-    command: bash -c "a2ensite /etc/apache2/sites-available/custom-config.conf && a2dissite /etc/apache2/sites-available/000-default.conf && service apache2 reload && apache2-foreground"
     volumes:
       - content:/var/www/html
       - config:/etc/apache2/sites-available
