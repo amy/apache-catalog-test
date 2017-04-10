@@ -4,12 +4,15 @@ services:
     tty: true
     stdin_open: true
     image: php:7.1.3-apache
+    command: bash -c "a2ensite /root/config/custom-config.conf && a2dissite /etc/apache2/sites-available/000-default.conf && service apache2 reload && apache2-foreground"
     volumes:
       - content:/var/www/html
       - config:/root/config
     scale: {{.Values.APACHE_SCALE}}
     labels:
       io.rancher.sidekicks: apache-config
+    depends_on:
+      - "apache_config"
   apache-config:
     tty: true
     image: amycodes/apache-config:latest
