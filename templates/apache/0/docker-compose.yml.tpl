@@ -44,7 +44,8 @@ services:
         - {{.Values.CERT_NAME}}
       {{end}}
       port_rules:
-        - source_port: 443
+        - host_name: ''
+          source_port: 443
           target_port: 80
           service: apache
           protocol: {{.Values.PROTOCOL}}
