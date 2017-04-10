@@ -36,7 +36,7 @@ catalog:
         - sni
         - custom
     - variable: "CERT_NAME"
-      description: "Specify certificate name created in Rancher UI"
+      description: "Specify certificate name created in Rancher UI. Mandatory for https, tls, and sni protocols."
       label: "Certificate Name"
       type: certificate
       required: false
