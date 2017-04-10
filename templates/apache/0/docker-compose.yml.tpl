@@ -2,8 +2,7 @@ version: '2'
 services:
   apache:
     tty: true
-    image: php:7.1.3-apache
-    command: bash -c "apache2-foreground && mv /root/config/custom-config.conf /etc/apache2/sites-available && a2ensite custom-config.conf && a2dissite 000-default.conf && service apache2 reload"
+    image: amycodes/apache-conf
     volumes:
       - content:/var/www/html
       - config:/root/config
