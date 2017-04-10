@@ -41,8 +41,8 @@ catalog:
       type: certificate
       required: false
     - variable: "CUSTOM"
-      description: "Enter your custom config here"
-      label: "Custom config"
+      description: "Enter your custom load balancer config here for custom protocol"
+      label: "Custom load balancer config"
       type: multiline
       required: false
     - variable: "APACHE_CONF"
