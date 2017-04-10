@@ -8,6 +8,7 @@ services:
       - content:/var/www/html
       - config:/etc/apache2/sites-available
     scale: {{.Values.APACHE_SCALE}}
+    privileged: true
     labels:
       io.rancher.sidekicks: apache-config
   apache-config:
@@ -19,6 +20,7 @@ services:
     volumes:
       - config:/root
     stdin_open: true
+    privileged: true
     labels:
       io.rancher.container.pull_image: always
       io.rancher.container.start_once: true
