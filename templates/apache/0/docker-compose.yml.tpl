@@ -6,7 +6,7 @@ services:
     image: php:7.1.3-apache
     volumes:
       - content:/var/www/html
-      - config:/root/config
+      - config:/etc/apache2/sites-available
     scale: {{.Values.APACHE_SCALE}}
     labels:
       io.rancher.sidekicks: apache-config
