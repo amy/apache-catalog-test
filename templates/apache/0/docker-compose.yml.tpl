@@ -40,8 +40,6 @@ services:
         ${CUSTOM}
     {{else}}
       {{if ((eq .Values.PROTOCOL "https") or (eq .Values.PROTOCOL "tls") or (eq .Values.PROTOCOL "sni"))}}
-      certs:
-        - {{.Values.CERT_NAME}}
       default_cert: {{.Values.CERT_NAME}}
       {{end}}
       port_rules:
