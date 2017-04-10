@@ -36,7 +36,7 @@ services:
     scale: 1
     lb_config:
     {{if not (eq .Values.PROTOCOL "custom")}}
-      {{if ((eq .Values.PROTOCOL "https") or (eq .Values.PROTOCOL "tls") or (eq .Values.PROTOCOL "sni"))}}
+      {{if (eq .Values.PROTOCOL "https")}}
       certs:
         - {{.Values.CERT_NAME}}
       {{end}}
