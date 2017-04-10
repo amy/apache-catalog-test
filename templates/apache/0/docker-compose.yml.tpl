@@ -35,7 +35,10 @@ services:
       - {{.Values.PUBLISH_PORT}}:80
     scale: 1
     lb_config:
-    {{if not (eq .Values.PROTOCOL "custom")}}
+    {{if (eq .Values.PROTOCOL "custom")}}
+      config: |
+        ${CUSTOM}
+    {{else}}
       {{if ((eq .Values.PROTOCOL "https") or (eq .Values.PROTOCOL "tls") or (eq .Values.PROTOCOL "sni"))}}
       certs:
         - {{.Values.CERT_NAME}}
@@ -45,9 +48,6 @@ services:
           target_port: 80
           service: apache
           protocol: {{.Values.PROTOCOL}}
-    {{else}}
-      config: |
-        ${CUSTOM}
     {{end}}
     health_check:
       port: 42
