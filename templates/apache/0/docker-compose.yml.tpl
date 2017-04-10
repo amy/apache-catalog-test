@@ -32,7 +32,7 @@ services:
   apache-lb:
     image: rancher/lb-service-haproxy:v0.6.4
     ports:
-      - "80:80"
+      - {{.Values.PUBLISH_PORT}}:80
     scale: 1
     lb_config:
     {{if (eq .Values.PROTOCOL "custom")}}
