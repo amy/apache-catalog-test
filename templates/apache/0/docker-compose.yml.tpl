@@ -4,9 +4,10 @@ services:
     tty: true
     stdin_open: true
     image: php:7.1.3-apache
+    command: bash -c "mv /root/config/custom-config.conf /etc/apache2/sites-available"
     volumes:
       - content:/var/www/html
-      - config:/etc/apache2/sites-available
+      - config:/root/config
     scale: {{.Values.APACHE_SCALE}}
     privileged: true
     labels:
