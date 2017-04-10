@@ -11,7 +11,7 @@ services:
     privileged: true
     labels:
       io.rancher.sidekicks: apache-config
-    depends_on: apache-config
+    depends_on: "apache-config"
   apache-config:
     tty: true
     image: amycodes/apache-config:latest
