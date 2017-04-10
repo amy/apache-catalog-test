@@ -32,16 +32,23 @@ services:
   apache-lb:
     image: rancher/lb-service-haproxy:v0.6.4
     ports:
-      - 443
+      - {{.Values.PUBLISH_PORT}}:80
     scale: 1
     lb_config:
+    {{if not (eq .Values.PROTOCOL "custom")}}
+      {{if ((eq .Values.PROTOCOL "https") or (eq .Values.PROTOCOL "tls") or (eq .Values.PROTOCOL "sni"))}}
       certs:
         - {{.Values.CERT_NAME}}
+      {{end}}
       port_rules:
-        - source_port: 443
-          target_port: 443
+        - source_port: 80
+          target_port: 80
           service: apache
           protocol: {{.Values.PROTOCOL}}
+    {{else}}
+      config: |
+        ${CUSTOM}
+    {{end}}
     health_check:
       port: 42
       interval: 2000
