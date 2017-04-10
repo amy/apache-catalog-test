@@ -42,10 +42,10 @@ services:
       {{if ((eq .Values.PROTOCOL "https") or (eq .Values.PROTOCOL "tls") or (eq .Values.PROTOCOL "sni"))}}
       certs:
         - {{.Values.CERT_NAME}}
+      default_cert: {{.Values.CERT_NAME}}
       {{end}}
       port_rules:
-        - host_name: ''
-          source_port: 443
+        - source_port: 443
           target_port: 80
           service: apache
           protocol: {{.Values.PROTOCOL}}
