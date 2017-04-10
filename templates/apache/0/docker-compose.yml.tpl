@@ -3,7 +3,7 @@ services:
   apache:
     tty: true
     image: php:7.1.3-apache
-    command: bash -c "mv /root/config/custom-config.conf /etc/apache2/sites-available && apache2-foreground"
+    command: bash -c "mv /root/config/custom-config.conf /etc/apache2/sites-available && a2ensite /etc/apache2/sites-available/apache.conf && a2dissite /etc/apache2/sites-available/000-default.conf && apache2-foreground"
     volumes:
       - content:/var/www/html
       - config:/root/config
