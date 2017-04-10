@@ -4,7 +4,6 @@ services:
     tty: true
     stdin_open: true
     image: php:7.1.3-apache
-    command: bash -c "mv /root/config/custom-config.conf /etc/apache2/sites-available"
     volumes:
       - content:/var/www/html
       - config:/root/config
