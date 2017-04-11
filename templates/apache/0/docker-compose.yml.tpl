@@ -5,7 +5,9 @@ services:
     image: php:7.1.3-apache
     restart: always
     command: | 
-      bash -c "mv /root/config/custom-config.conf /etc/apache2/sites-available &&
+      bash -c "mv /root/config/custom-config.conf /etc/apache2/sites-available && 
+      a2ensite custom-config.conf && 
+      a2dissite 000-default.conf && 
       apache2-foreground"
     volumes:
       - content:/var/www/html
