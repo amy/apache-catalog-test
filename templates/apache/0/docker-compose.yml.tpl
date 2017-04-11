@@ -11,6 +11,10 @@ services:
       - content:/var/www/html
       - config:/root/config
     scale: {{.Values.APACHE_SCALE}}
+  {{if .Values.PROTOCOL}}
+    ports:
+      - {{.Values.PUBLISH_PORT}}:80
+  {{end}}
   {{if .Values.APACHE_CONF}}
     labels:
       io.rancher.sidekicks: apache-config
@@ -29,6 +33,7 @@ services:
       io.rancher.container.pull_image: always
       io.rancher.container.start_once: true
   {{end}}
+  {{if .Values.PROTOCOL}}
   apache-lb:
     image: rancher/lb-service-haproxy:v0.6.4
     ports:
@@ -54,6 +59,7 @@ services:
       unhealthy_threshold: 3
       healthy_threshold: 2
       response_timeout: 2000
+  {{end}}
 volumes:
   content:
     driver: {{.Values.VOLUME_DRIVER}}
