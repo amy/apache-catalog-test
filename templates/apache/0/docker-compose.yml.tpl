@@ -5,7 +5,11 @@ services:
     image: php:7.1.3-apache
     restart: always
   {{if .Values.APACHE_CONF}}
-    command: bash -c "mv /root/config/custom-config.conf /etc/apache2/sites-available && a2ensite custom-config.conf && a2dissite 000-default.conf && apache2-foreground"
+    command: | 
+      bash -c "mv /root/config/custom-config.conf /etc/apache2/sites-available && 
+      a2ensite custom-config.conf && 
+      a2dissite 000-default.conf && 
+      apache2-foreground"
   {{end}}
     command: | 
       bash -c "a2enmod ssl && 
@@ -19,6 +23,9 @@ services:
       TEST6
       test@test7.com
       COMMANDBLOCK
+      mv /root/config/custom-config.conf /etc/apache2/sites-available &&
+      a2ensite custom-config.conf && 
+      a2dissite 000-default.conf
       apache2-foreground"
     volumes:
       - content:/var/www/html
