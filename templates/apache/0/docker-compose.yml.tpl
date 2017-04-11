@@ -11,7 +11,7 @@ services:
       - content:/var/www/html
       - config:/root/config
     scale: {{.Values.APACHE_SCALE}}
-  {{if .Values.PROTOCOL}}
+  {{if not .Values.PROTOCOL}}
     ports:
       - {{.Values.PUBLISH_PORT}}:80
   {{end}}
