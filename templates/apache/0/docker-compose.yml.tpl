@@ -11,4 +11,4 @@ services:
     image: tomcat:latest
     scale: 1
     ports:
-      - "80:80"
+      - 8888:8080
