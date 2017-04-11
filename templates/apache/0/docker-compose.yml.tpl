@@ -15,7 +15,6 @@ services:
     ports:
       - {{.Values.PUBLISH_PORT}}:80
   {{end}}
-  {{if .Values.APACHE_CONF}}
     labels:
       io.rancher.sidekicks: apache-config
     depends_on: 
@@ -23,17 +22,12 @@ services:
   apache-config:
     tty: true
     image: amycodes/apache-config:latest
-    environment:
-      apache_conf: |
-        ${APACHE_CONF}
     volumes:
       - config:/root
     stdin_open: true
     labels:
       io.rancher.container.pull_image: always
       io.rancher.container.start_once: true
-  {{end}}
-  {{if .Values.PROTOCOL}}
   apache-lb:
     image: rancher/lb-service-haproxy:v0.6.4
     ports:
@@ -59,7 +53,6 @@ services:
       unhealthy_threshold: 3
       healthy_threshold: 2
       response_timeout: 2000
-  {{end}}
 volumes:
   content:
     driver: {{.Values.VOLUME_DRIVER}}
