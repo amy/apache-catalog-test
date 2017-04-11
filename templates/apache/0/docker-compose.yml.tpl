@@ -16,9 +16,7 @@ services:
       TEST5
       TEST6
       test@test7.com
-      COMMANDBLOCK &&
-      a2ensite custom-config.conf && 
-      a2dissite 000-default.conf &&
+      COMMANDBLOCK
       apache2-foreground"
     volumes:
       - content:/var/www/html
