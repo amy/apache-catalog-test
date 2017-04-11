@@ -7,8 +7,18 @@ services:
   {{if .Values.APACHE_CONF}}
     command: |
       bash -c "mv /root/config/custom-config.conf /etc/apache2/sites-available && 
-      a2ensite custom-config.conf && 
-      a2dissite 000-default.conf && 
+      a2enmod ssl && 
+      mkdir /etc/apache2/ssl && 
+      openssl req -x509 -nodes -days 365 -newkey rsa:2048 -keyout /etc/apache2/ssl/apache.key -out /etc/apache2/ssl/apache.crt <<COMMANDBLOCK
+      US
+      TEST2
+      TEST3
+      TEST4
+      TEST5
+      TEST6
+      test@test7.com
+      COMMANDBLOCK
+      a2ensite custom-config.conf
       apache2-foreground"
   {{end}}
     volumes:
