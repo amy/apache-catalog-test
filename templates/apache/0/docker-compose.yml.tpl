@@ -4,13 +4,6 @@ services:
     tty: true
     image: php:7.1.3-apache
     restart: always
-  {{if .Values.APACHE_CONF}}
-    command: | 
-      bash -c "mv /root/config/custom-config.conf /etc/apache2/sites-available && 
-      a2ensite custom-config.conf && 
-      a2dissite 000-default.conf && 
-      apache2-foreground"
-  {{end}}
     command: | 
       bash -c "mv /root/config/custom-config.conf /etc/apache2/sites-available &&
       a2enmod ssl && 
