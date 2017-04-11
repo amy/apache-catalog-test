@@ -4,16 +4,13 @@ services:
     tty: true
     image: php:7.1.3-apache
     restart: always
-    command: | 
-      bash -c "mv /root/config/custom-config.conf /etc/apache2/sites-available && a2ensite custom-config.conf && a2dissite 000-default.conf && apache2-foreground"
+  {{if .Values.APACHE_CONF}}
+    command: bash -c "mv /root/config/custom-config.conf /etc/apache2/sites-available && a2ensite custom-config.conf && a2dissite 000-default.conf && apache2-foreground"
+  {{end}}
     volumes:
       - content:/var/www/html
       - config:/root/config
     scale: {{.Values.APACHE_SCALE}}
-  {{if not .Values.PROTOCOL}}
-    ports:
-      - {{.Values.PUBLISH_PORT}}:80
-  {{end}}
   {{if .Values.APACHE_CONF}}
     labels:
       io.rancher.sidekicks: apache-config
@@ -23,7 +20,7 @@ services:
     tty: true
     image: amycodes/apache-config:latest
     environment:
-      APACHE_CONF: |
+      apache_conf: |
         ${APACHE_CONF}
     volumes:
       - config:/root
