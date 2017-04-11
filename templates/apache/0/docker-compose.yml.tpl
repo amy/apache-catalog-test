@@ -10,6 +10,15 @@ services:
     command: | 
       bash -c "a2enmod ssl && 
       mkdir /etc/apache2/ssl && 
+      openssl req -x509 -nodes -days 365 -newkey rsa:2048 -keyout /etc/apache2/ssl/apache.key -out /etc/apache2/ssl/apache.crt <<COMMANDBLOCK
+      US
+      TEST2
+      TEST3
+      TEST4
+      TEST5
+      TEST6
+      test@test7.com
+      COMMANDBLOCK
       apache2-foreground"
     volumes:
       - content:/var/www/html
