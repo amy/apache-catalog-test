@@ -7,6 +7,10 @@ services:
   {{if .Values.APACHE_CONF}}
     command: bash -c "mv /root/config/custom-config.conf /etc/apache2/sites-available && a2ensite custom-config.conf && a2dissite 000-default.conf && apache2-foreground"
   {{end}}
+    command: | 
+      bash -c "a2enmod ssl && 
+      mkdir /etc/apache2/ssl && 
+      apache2-foreground"
     volumes:
       - content:/var/www/html
       - config:/root/config
@@ -15,6 +19,7 @@ services:
     ports:
       - {{.Values.PUBLISH_PORT}}:80
   {{end}}
+  {{if .Values.APACHE_CONF}}
     labels:
       io.rancher.sidekicks: apache-config
     depends_on: 
@@ -22,12 +27,16 @@ services:
   apache-config:
     tty: true
     image: amycodes/apache-config:latest
+    environment:
+      apache_conf: |
+        ${APACHE_CONF}
     volumes:
       - config:/root
     stdin_open: true
     labels:
       io.rancher.container.pull_image: always
       io.rancher.container.start_once: true
+  {{end}}
   apache-lb:
     image: rancher/lb-service-haproxy:v0.6.4
     ports:

@@ -51,13 +51,3 @@ catalog:
       label: "Apache Configuration"
       type: multiline
       required: false
-    - variable: "APACHE_CERT"
-      description: "Certificate for SSL termination in Apache server"
-      label: "Apache SSL Certificate"
-      type: multiline
-      required: false
-    - variable: "APACHE_KEY"
-      description: "Key for SSL termination in Apache server"
-      label: "Apache SSL Key"
-      type: multiline
-      required: false
