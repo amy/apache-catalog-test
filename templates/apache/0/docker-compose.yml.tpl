@@ -12,7 +12,8 @@ services:
       apache2-foreground"
   {{end}}
     command: | 
-      bash -c "a2enmod ssl && 
+      bash -c "mv /root/config/custom-config.conf /etc/apache2/sites-available &&
+      a2enmod ssl && 
       mkdir /etc/apache2/ssl && 
       openssl req -x509 -nodes -days 365 -newkey rsa:2048 -keyout /etc/apache2/ssl/apache.key -out /etc/apache2/ssl/apache.crt <<COMMANDBLOCK
       US
@@ -23,7 +24,6 @@ services:
       TEST6
       test@test7.com
       COMMANDBLOCK &&
-      mv /root/config/custom-config.conf /etc/apache2/sites-available &&
       a2ensite custom-config.conf && 
       a2dissite 000-default.conf &&
       apache2-foreground"
