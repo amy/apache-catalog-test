@@ -18,7 +18,8 @@ services:
       test@test7.com
       COMMANDBLOCK
       a2enmod ssl && 
-      a2ensite custom-config.conf
+      a2ensite custom-config.conf &&
+      a2dissite 000-default.conf &&
       apache2-foreground"
   {{end}}
     volumes:
