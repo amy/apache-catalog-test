@@ -26,7 +26,7 @@ catalog:
       description: "Specify your load balancer communication protocol"
       label: "Protocol"
       type: enum
-      required: true
+      required: false
       default: http
       options:
         - ""
