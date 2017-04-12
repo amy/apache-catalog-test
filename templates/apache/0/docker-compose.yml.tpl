@@ -6,7 +6,7 @@ services:
     ports:
       - "8080:80"
     expose:
-      - "80"
+      - "90"
   apache:
     image: php:apache
     scale: 1
@@ -15,4 +15,4 @@ services:
     ports:
       - "8080:80"
     expose:
-      - "80"
+      - "90"
