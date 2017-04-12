@@ -3,8 +3,6 @@ services:
   tomcat1:
     image: tomcat:8.0
     scale: 1
-    ports:
-      - "8080"
   apache:
     image: php:7.1.3-apache
     scale: 1
