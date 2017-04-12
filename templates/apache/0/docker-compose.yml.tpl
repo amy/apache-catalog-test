@@ -3,8 +3,8 @@ services:
   tomcat1:
     image: tomcat:8.0
     scale: 1
-    expose:
-      - "80"
+    ports:
+      - "80:80"
   apache:
     image: php:apache
     scale: 1
