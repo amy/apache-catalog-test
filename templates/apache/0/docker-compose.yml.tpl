@@ -4,7 +4,7 @@ services:
     image: tomcat:8.0
     scale: 1
     ports:
-      - "80:80"
+      - "8080:80"
     expose:
       - "80"
   apache:
@@ -13,6 +13,6 @@ services:
     links:
       - tomcat1
     ports:
-      - "80:80"
+      - "8080:80"
     expose:
       - "80"
