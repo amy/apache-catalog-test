@@ -4,7 +4,7 @@ services:
     image: tomcat:8.0
     scale: 1
     ports:
-      - "80:80"
+      - "8080:8001"
   apache:
     image: php:apache
     scale: 1
