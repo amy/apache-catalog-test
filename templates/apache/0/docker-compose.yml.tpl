@@ -4,4 +4,4 @@ services:
     image: tomcat:8.0
     scale: 1
     ports:
-      - "80:80"
+      - "8000:8080"
