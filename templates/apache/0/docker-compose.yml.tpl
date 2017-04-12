@@ -8,6 +8,7 @@ services:
   apache:
     image: php:7.1.3-apache
     scale: 1
-    ports: "8080:80"
-    link:
+    ports: 
+      - "8080:80"
+    links:
       - tomcat1
