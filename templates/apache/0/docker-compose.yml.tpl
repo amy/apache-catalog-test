@@ -6,22 +6,6 @@ services:
     restart: always
 {{if .Values.APACHE_CONF}}
   {{if (eq .Values.APACHE_ROLE "webserver")}}
-    {{if .Values.APACHE_SSL}}
-    command: |
-      bash -c "mv /root/config/custom-config.conf /etc/apache2/sites-available &&
-      a2enmod ssl && 
-      mkdir /etc/apache2/ssl && 
-      openssl req -x509 -nodes -days 365 -newkey rsa:2048 -keyout /etc/apache2/ssl/apache.key -out /etc/apache2/ssl/apache.crt <<COMMANDBLOCK
-      ${COUNTRY}
-      ${STATE}
-      ${LOCALITY}
-      ${ORGANIZATION}
-      ${UNIT}
-      ${COMMON}
-      ${EMAIL}
-      COMMANDBLOCK
-      apache2-foreground"
-    {{else}}
     command: |
       bash -c "mv /root/config/custom-config.conf /etc/apache2/sites-available && 
       a2ensite custom-config.conf && 
