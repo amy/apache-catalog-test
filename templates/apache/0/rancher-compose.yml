@@ -6,29 +6,36 @@ catalog:
   minimum_rancher_version: v1.5.0
   questions:
     - variable: "APACHE_SCALE"
-      description: "Number of Apache nodes"
+      description: |
+        Number of Apache nodes.
       label: "Apache nodes"
       type: int
       required: true
       default: 1
     - variable: "VOLUME_DRIVER"
-      description: "Docker volume driver"
+      description: |
+        Docker volume driver
       label: "Volume Driver"
       type: "string"
       default: "local"
     - variable: "PUBLISH_PORT"
-      description: "Customize your external publish port, defaults to port 80"
+      description: |
+        Customize your external publish port, defaults to port 80.
       label: "Publish Port"
       type: int
       required: false
       default: 80
     - variable: "PROTOCOL"
-      description: "Specify your load balancer communication protocol"
+      description: |
+        Specify your load balancer communication protocol. Default "none" 
+        will expose a port on the Apache webserver and no loadbalancer 
+        will be placed in front of the Apache server.
       label: "Protocol"
       type: enum
       required: true
-      default: http
+      default: none
       options:
+        - none
         - http
         - tcp
         - https
@@ -36,17 +43,80 @@ catalog:
         - sni
         - custom
     - variable: "CERT_NAME"
-      description: "Specify certificate name created in Rancher UI. Mandatory for https, tls, and sni protocols."
+      description: |
+        Specify certificate name created in Rancher UI. Mandatory for 
+        https, tls, and sni protocols.
       label: "Certificate Name"
       type: certificate
       required: false
     - variable: "CUSTOM"
-      description: "Enter your custom load balancer config here for custom protocol"
+      description: |
+        Enter your custom load balancer config here for custom load balancer protocol.
       label: "Custom load balancer config"
       type: multiline
       required: false
     - variable: "APACHE_CONF"
-      description: "Enter your apache configuration file here"
+      description: |
+        Enter your apache configuration file here.
       label: "Apache Configuration"
       type: multiline
+      required: false
+    - variable: "APACHE_ROLE"
+      description: |
+        Choose what type of role the server plays: webserver, reverse proxy, or ssl enabled reverse proxy.
+      label: "Apache Role"
+      type: enum
+      default: webserver
+      options:
+        - webserver
+        - reverse-proxy
+      required: true
+    - variable: "APACHE_SSL"
+      description: |
+        Enable SSL termination for Apache webserver or proxy.
+      label: "Apache SSL Termination"
+      type: "boolean"
+      default: true
+      required: true
+    - variable: "COUNTRY"
+      description: |
+        Country Name (2 letter code) [GB]
+      label: "Country Name"
+      type: "string"
+      required: false
+    - variable: "STATE"
+      description: |
+        State or Province Name (full name) [Berkshire]
+      label: "State or Province Name"
+      type: "string"
+      required: false
+    - variable: "LOCALITY"
+      description: |
+        Locality Name (eg, city) [Newbury]
+      label: "Locality Name"
+      type: "string"
+      required: false
+    - variable: "ORGANIZATION"
+      description: |
+        Organization Name (eg, company) [My Company Ltd]
+      label: "Organization Name"
+      type: "string"
+      required: false
+    - variable: "UNIT"
+      description: |
+        Organizational Unit Name (eg, section)
+      label: "Organizational Unit Name"
+      type: "string"
+      required: false
+    - variable: "COMMON"
+      description: |
+        Common Name (eg, your name or your server's hostname)
+      label: "Common Name"
+      type: "string"
+      required: false
+    - variable: "EMAIL"
+      description: |
+        Email Address
+      label: "Email Address"
+      type: "string"
       required: false
