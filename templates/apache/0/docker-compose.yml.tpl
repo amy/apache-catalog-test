@@ -11,7 +11,6 @@ services:
       a2ensite custom-config.conf && 
       a2dissite 000-default.conf && 
       apache2-foreground"
-    {{end}}
   {{end}}
   {{if (eq .Values.APACHE_ROLE "reverse-proxy")}}
     {{if .Values.APACHE_SSL}}
