@@ -4,38 +4,10 @@ services:
     tty: true
     image: php:7.1.3-apache
     restart: always
-{{if .Values.APACHE_CONF}}
-  {{if (eq .Values.APACHE_ROLE "webserver")}}
-    {{if .Values.APACHE_SSL}}
     command: |
-      bash -c "mv /root/config/custom-config.conf /etc/apache2/sites-available &&
-      a2enmod ssl && 
-      mkdir /etc/apache2/ssl && 
-      openssl req -x509 -nodes -days 365 -newkey rsa:2048 -keyout /etc/apache2/ssl/apache.key -out /etc/apache2/ssl/apache.crt <<COMMANDBLOCK
-      ${COUNTRY}
-      ${STATE}
-      ${LOCALITY}
-      ${ORGANIZATION}
-      ${UNIT}
-      ${COMMON}
-      ${EMAIL}
-      COMMANDBLOCK
-      apache2-foreground"
-    {{end}}
-    {{if not .Values.APACHE_SSL}}
-    command: |
-      bash -c "mv /root/config/custom-config.conf /etc/apache2/sites-available && 
-      a2ensite custom-config.conf && 
-      a2dissite 000-default.conf && 
-      apache2-foreground"
-    {{end}}
-  {{end}}
-  {{if (eq .Values.APACHE_ROLE "reverse-proxy")}}
-    {{if not .Values.APACHE_SSL}}
-    command: |
-      bash -c "apt-get update
+      bash -c "mv /root/config/custom-config.conf /etc/apache2/sites-available
+      apt-get update
       apt-get -y upgrade
-      mv /root/config/custom-config.conf /etc/apache2/sites-available &&
       apt-get install -y build-essential &&
       apt-get install -y libapache2-mod-proxy-html libxml2-dev &&
       a2enmod proxy &&
@@ -50,11 +22,6 @@ services:
       a2ensite custom-config.conf && 
       a2dissite 000-default.conf && 
       apache2-foreground"
-    {{end}}
-    external_links:
-      - {{.Values.EXTERNAL}}
-  {{end}}
-{{end}}
 {{if (eq .Values.PROTOCOL "none")}}
     ports:
       - {{.Values.PUBLISH_PORT}}:80
