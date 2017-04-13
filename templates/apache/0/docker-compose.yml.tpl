@@ -30,6 +30,8 @@ services:
       a2ensite custom-config.conf && 
       a2dissite 000-default.conf && 
       apache2-foreground"
+    external_links:
+      - {{.Values.EXTERNAL}}
     labels:
       io.rancher.sidekicks: apache-config
     depends_on: 
