@@ -12,34 +12,6 @@ services:
       - content:/var/www/html
       - config:/root/config
     scale: {{.Values.APACHE_SCALE}}
-{{if .Values.APACHE_CONF}}
-  {{if (eq .Values.APACHE_ROLE "webserver")}}
-    {{if .Values.APACHE_SSL}}
-    command: |
-      bash -c "mv /root/config/custom-config.conf /etc/apache2/sites-available &&
-      a2enmod ssl && 
-      mkdir /etc/apache2/ssl && 
-      openssl req -x509 -nodes -days 365 -newkey rsa:2048 -keyout /etc/apache2/ssl/apache.key -out /etc/apache2/ssl/apache.crt <<COMMANDBLOCK
-      ${COUNTRY}
-      ${STATE}
-      ${LOCALITY}
-      ${ORGANIZATION}
-      ${UNIT}
-      ${COMMON}
-      ${EMAIL}
-      COMMANDBLOCK
-      apache2-foreground"
-    {{end}}
-    {{if not .Values.APACHE_SSL}}
-    command: |
-      bash -c "mv /root/config/custom-config.conf /etc/apache2/sites-available && 
-      a2ensite custom-config.conf && 
-      a2dissite 000-default.conf && 
-      apache2-foreground"
-    {{end}}
-  {{end}}
-  {{if (eq .Values.APACHE_ROLE "reverse-proxy")}}
-    {{if not .Values.APACHE_SSL}}
     command: |
       bash -c "mv /root/config/custom-config.conf /etc/apache2/sites-available
       apt-get update
@@ -58,10 +30,6 @@ services:
       a2ensite custom-config.conf && 
       a2dissite 000-default.conf && 
       apache2-foreground"
-    {{end}}
-    external_links:
-      - {{.Values.EXTERNAL}}
-  {{end}}
     labels:
       io.rancher.sidekicks: apache-config
     depends_on: 
@@ -78,7 +46,6 @@ services:
     labels:
       io.rancher.container.pull_image: always
       io.rancher.container.start_once: true
-{{end}}
 {{if not (eq .Values.PROTOCOL "none")}}
   apache-lb:
     image: rancher/lb-service-haproxy:v0.6.4
