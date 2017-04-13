@@ -51,9 +51,9 @@ services:
       a2dissite 000-default.conf && 
       apache2-foreground"
     {{end}}
-  {{end}}
     external_links:
       - {{.Values.EXTERNAL}}
+  {{end}}
 {{end}}
 {{if (eq .Values.PROTOCOL "none")}}
     ports:
