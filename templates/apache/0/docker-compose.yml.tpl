@@ -41,7 +41,7 @@ services:
   {{if (eq .Values.APACHE_ROLE "reverse-proxy")}}
     external_links:
       - {{.Values.EXTERNAL}}
-    {{if not .Values.APACHE_SSL}}
+    {{if (not .Values.APACHE_SSL)}}
     command: |
       bash -c "mv /root/config/custom-config.conf /etc/apache2/sites-available
       apt-get update
@@ -57,8 +57,8 @@ services:
       a2enmod proxy_balancer &&
       a2enmod proxy_connect &&
       a2enmod proxy_html
-      a2ensite custom-config.conf && 
-      a2dissite 000-default.conf && 
+      a2ensite custom-config.conf
+      a2dissite 000-default.conf
       apache2-foreground"
     {{end}}
   {{end}}
