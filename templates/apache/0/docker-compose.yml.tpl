@@ -16,6 +16,21 @@ services:
       - tomcat/tomcat:tomcat
     command: |
       bash -c "mv /root/config/custom-config.conf /etc/apache2/sites-available
+      apt-get update
+      apt-get -y upgrade
+      apt-get install -y build-essential &&
+      apt-get install -y libapache2-mod-proxy-html libxml2-dev &&
+      a2enmod proxy &&
+      a2enmod proxy_http &&
+      a2enmod proxy_ajp &&
+      a2enmod rewrite &&
+      a2enmod deflate &&
+      a2enmod headers &&
+      a2enmod proxy_balancer &&
+      a2enmod proxy_connect &&
+      a2enmod proxy_html
+      a2ensite custom-config.conf && 
+      a2dissite 000-default.conf && 
       apache2-foreground"
 {{if .Values.APACHE_CONF}}
     labels:
