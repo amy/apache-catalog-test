@@ -52,12 +52,12 @@ services:
       apache2-foreground"
     {{end}}
   {{end}}
-  external_links:
-    - {{.Values.EXTERNAL}}
+    external_links:
+      - {{.Values.EXTERNAL}}
 {{end}}
 {{if (eq .Values.PROTOCOL "none")}}
-  ports:
-    - {{.Values.PUBLISH_PORT}}:80
+    ports:
+      - {{.Values.PUBLISH_PORT}}:80
 {{end}}
     volumes:
       - content:/var/www/html
