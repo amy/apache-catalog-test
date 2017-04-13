@@ -55,6 +55,10 @@ services:
   external_links:
     - {{.Values.EXTERNAL}}
 {{end}}
+{{if (eq .Values.PROTOCOL "none")}}
+  ports:
+    - {{.Values.PUBLISH_PORT}}:80
+{{end}}
     volumes:
       - content:/var/www/html
       - config:/root/config
