@@ -12,6 +12,8 @@ services:
       - content:/var/www/html
       - config:/root/config
     scale: {{.Values.APACHE_SCALE}}
+    external_links:
+      - tomcat/tomcat:tomcat
 {{if .Values.APACHE_CONF}}
     labels:
       io.rancher.sidekicks: apache-config
