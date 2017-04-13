@@ -41,7 +41,7 @@ services:
   {{if (eq .Values.APACHE_ROLE "reverse-proxy")}}
     external_links:
       - {{.Values.EXTERNAL}}
-    {{if (eq .Values.APACHE_SSL false)}}
+    {{if (eq .Values.APACHE_SSL "false")}}
     command: |
       bash -c "mv /root/config/custom-config.conf /etc/apache2/sites-available
       apt-get update
