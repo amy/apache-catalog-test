@@ -32,7 +32,8 @@ services:
   {{end}}
   {{if (eq .Values.APACHE_ROLE "reverse-proxy")}}
     {{if .Values.APACHE_SSL}}
-    {{else}}
+    {{end}}
+    {{if not .Values.APACHE_SSL}}
     command: |
       bash -c "mv /root/config/custom-config.conf /etc/apache2/sites-available &&
       apt-get update &&
