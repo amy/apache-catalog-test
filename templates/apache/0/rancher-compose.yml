@@ -72,6 +72,7 @@ catalog:
         - reverse-proxy
       required: true
     - variable: "EXTERNAL"
+      label: "External service link"
       description: |
         Choose the service your Apache server will reverse-proxy in the following format:
         stack_name/service_name:service_alias
