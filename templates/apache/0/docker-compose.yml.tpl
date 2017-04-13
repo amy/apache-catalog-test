@@ -33,8 +33,8 @@ services:
   {{if (eq .Values.APACHE_ROLE "reverse-proxy")}}
     {{if not .Values.APACHE_SSL}}
     command: |
-      bash -c "apt-get update &&
-      apt-get -y upgrade &&
+      bash -c "apt-get update
+      apt-get -y upgrade
       mv /root/config/custom-config.conf /etc/apache2/sites-available &&
       apt-get install -y build-essential &&
       apt-get install -y libapache2-mod-proxy-html libxml2-dev &&
