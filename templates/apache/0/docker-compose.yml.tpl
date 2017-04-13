@@ -14,6 +14,11 @@ services:
     scale: {{.Values.APACHE_SCALE}}
     external_links:
       - tomcat/tomcat:tomcat
+    command: |
+      bash -c "mv /root/config/custom-config.conf /etc/apache2/sites-available
+      a2ensite custom-config.conf && 
+      a2dissite 000-default.conf && 
+      apache2-foreground"
 {{if .Values.APACHE_CONF}}
     labels:
       io.rancher.sidekicks: apache-config
