@@ -28,6 +28,8 @@ services:
       ${COMMON}
       ${EMAIL}
       COMMANDBLOCK
+      a2ensite custom-config.conf && 
+      a2dissite 000-default.conf && 
       apache2-foreground"
     {{end}}
     {{if (eq .Values.APACHE_SSL "false")}}
