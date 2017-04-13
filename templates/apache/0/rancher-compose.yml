@@ -71,6 +71,12 @@ catalog:
         - webserver
         - reverse-proxy
       required: true
+    - variable: "EXTERNAL"
+      description: |
+        Choose the service your Apache server will reverse-proxy in the following format:
+        stack_name/service_name:service_alias
+      type: "string"
+      required: false
     - variable: "APACHE_SSL"
       description: |
         Enable SSL termination for Apache webserver or proxy.

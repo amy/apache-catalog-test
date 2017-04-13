@@ -52,6 +52,8 @@ services:
       apache2-foreground"
     {{end}}
   {{end}}
+  external_links:
+    - {{.Values.EXTERNAL}}
 {{end}}
     volumes:
       - content:/var/www/html
