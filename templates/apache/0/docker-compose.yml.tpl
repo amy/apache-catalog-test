@@ -14,7 +14,7 @@ services:
     scale: {{.Values.APACHE_SCALE}}
 {{if .Values.APACHE_CONF}}
   {{if (eq .Values.APACHE_ROLE "webserver")}}
-    {{if .Values.APACHE_SSL}}
+    {{if (eq .Values.APACHE_SSL "true")}}
     command: |
       bash -c "mv /root/config/custom-config.conf /etc/apache2/sites-available &&
       a2enmod ssl && 
@@ -30,7 +30,7 @@ services:
       COMMANDBLOCK
       apache2-foreground"
     {{end}}
-    {{if not .Values.APACHE_SSL}}
+    {{if (eq .Values.APACHE_SSL "false")}}
     command: |
       bash -c "mv /root/config/custom-config.conf /etc/apache2/sites-available && 
       a2ensite custom-config.conf && 
