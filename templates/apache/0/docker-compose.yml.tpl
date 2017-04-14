@@ -83,6 +83,7 @@ services:
       ${COMMON}
       ${EMAIL}
       COMMANDBLOCK
+      cat /etc/apache2/ssl/apache.crt /etc/apache2/ssl/apache.key > /etc/apache2/ssl/apache.pem
       apt-get update
       apt-get -y upgrade
       apt-get install -y build-essential &&
