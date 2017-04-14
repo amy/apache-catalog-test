@@ -7,7 +7,8 @@ services:
 {{if (eq .Values.PROTOCOL "none")}}
   {{if (eq .Values.APACHE_SSL "true")}}
     ports:
-      - {{.Values.PUBLISH_PORT}}:443
+      - "443:443"
+      - {{.Values.PUBLISH_PORT}}:80
   {{end}}
   {{if (eq .Values.APACHE_SSL "false")}}
     ports:
