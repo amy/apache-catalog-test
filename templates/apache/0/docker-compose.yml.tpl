@@ -5,9 +5,14 @@ services:
     image: php:7.1.3-apache
     restart: always
 {{if (eq .Values.PROTOCOL "none")}}
+  {{if (eq .Values.APACHE_SSL "true")}}
+    ports:
+      - {{.Values.PUBLISH_PORT}}:443
+  {{end}}
+  {{if (eq .Values.APACHE_SSL "false")}}
     ports:
       - {{.Values.PUBLISH_PORT}}:80
-      - "443:443"
+  {{end}}
 {{end}}
     volumes:
       - content:/var/www/html
