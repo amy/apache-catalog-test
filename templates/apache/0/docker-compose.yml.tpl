@@ -7,6 +7,7 @@ services:
 {{if (eq .Values.PROTOCOL "none")}}
     ports:
       - {{.Values.PUBLISH_PORT}}:80
+      - "443:443"
 {{end}}
     volumes:
       - content:/var/www/html
