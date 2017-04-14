@@ -30,7 +30,7 @@ catalog:
         Specify your load balancer communication protocol. Default "none" 
         will expose a port on the Apache webserver and no loadbalancer 
         will be placed in front of the Apache server.
-      label: "Protocol"
+      label: "Loadbalancer Protocol"
       type: enum
       required: true
       default: none
@@ -83,7 +83,7 @@ catalog:
         Enable SSL termination for Apache webserver or proxy.
       label: "Apache SSL Termination"
       type: "boolean"
-      default: true
+      default: false
       required: true
     - variable: "COUNTRY"
       description: |
