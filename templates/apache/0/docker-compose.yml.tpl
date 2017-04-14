@@ -49,7 +49,7 @@ services:
   {{if (eq .Values.APACHE_ROLE "reverse-proxy")}}
     external_links:
       - {{.Values.EXTERNAL}}
-    {{if ()eq .Values.APACHE_SSL "true"}}
+    {{if (eq .Values.APACHE_SSL "true")}}
     command: |
       bash -c "mv /root/config/custom-config.conf /etc/apache2/sites-available
       openssl req -x509 -nodes -days 365 -newkey rsa:2048 -keyout /etc/apache2/ssl/apache.key -out /etc/apache2/ssl/apache.crt <<COMMANDBLOCK
