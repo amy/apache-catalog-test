@@ -10,14 +10,15 @@ services:
       - content:/var/www/html
       - config:/root/config
     scale: {{.Values.APACHE_SCALE}}
-    environment:
-      apache_conf: |
-        ${APACHE_CONF}
 {{if .Values.APACHE_CONF}}
     command: bash -c "chmod +x /root/config/set-config.sh && /root/config/set-config.sh"
     labels:
       io.rancher.sidekicks: apache-config
       io.rancher.container.pull_image: always
+    environment:
+      apache_role: {{.Values.APACHE_ROLE}}
+      apache_conf: |
+        ${APACHE_CONF}
   apache-config:
     tty: true
     image: amycodes/apache-config:latest
