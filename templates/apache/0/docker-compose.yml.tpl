@@ -14,7 +14,7 @@ services:
       apache_conf: |
         ${APACHE_CONF}
 {{if .Values.APACHE_CONF}}
-    command: /root/config/set-config.sh
+    command: bash -c "chmod +x /root/config/set-config.sh && /root/config/set-config.sh"
     labels:
       io.rancher.sidekicks: apache-config
       io.rancher.container.pull_image: always
