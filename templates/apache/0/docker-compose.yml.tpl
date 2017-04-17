@@ -6,13 +6,10 @@ services:
     restart: always
     ports:
       - {{.Values.PUBLISH_PORT}}:80
-      - 443:443
     volumes:
       - content:/var/www/html
       - config:/root/config
     scale: {{.Values.APACHE_SCALE}}
-    environment:
-      apache_role: {{.Values.APACHE_ROLE}}
     external_links:
       - {{.Values.EXTERNAL}}
 {{if .Values.APACHE_CONF}}
