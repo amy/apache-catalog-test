@@ -6,6 +6,7 @@ services:
     restart: always
     ports:
       - {{.Values.PUBLISH_PORT}}:80
+      - 443:443
     volumes:
       - content:/var/www/html
       - config:/root/config
