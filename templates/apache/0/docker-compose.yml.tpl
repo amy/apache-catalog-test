@@ -5,103 +5,21 @@ services:
     image: php:7.1.3-apache
     restart: always
 {{if (eq .Values.PROTOCOL "none")}}
-  {{if (eq .Values.APACHE_SSL "true")}}
     ports:
+    {{if (eq .Values.APACHE_SSL "true")}}
       - "443:443"
+    {{end}}
       - {{.Values.PUBLISH_PORT}}:80
-  {{end}}
-  {{if (eq .Values.APACHE_SSL "false")}}
-    ports:
-      - {{.Values.PUBLISH_PORT}}:80
-  {{end}}
 {{end}}
     volumes:
       - content:/var/www/html
       - config:/root/config
     scale: {{.Values.APACHE_SCALE}}
 {{if .Values.APACHE_CONF}}
-  {{if (eq .Values.APACHE_ROLE "webserver")}}
-    {{if (eq .Values.APACHE_SSL "true")}}
-    command: |
-      bash -c "mv /root/config/custom-config.conf /etc/apache2/sites-available &&
-      a2enmod ssl && 
-      mkdir /etc/apache2/ssl && 
-      openssl req -x509 -nodes -days 365 -newkey rsa:2048 -keyout /etc/apache2/ssl/apache.key -out /etc/apache2/ssl/apache.crt <<COMMANDBLOCK
-      ${COUNTRY}
-      ${STATE}
-      ${LOCALITY}
-      ${ORGANIZATION}
-      ${UNIT}
-      ${COMMON}
-      ${EMAIL}
-      COMMANDBLOCK
-      a2ensite custom-config.conf
-      a2dissite 000-default.conf && 
-      apache2-foreground"
-    {{end}}
-    {{if (eq .Values.APACHE_SSL "false")}}
-    command: |
-      bash -c "mv /root/config/custom-config.conf /etc/apache2/sites-available && 
-      a2ensite custom-config.conf && 
-      a2dissite 000-default.conf && 
-      apache2-foreground"
-    {{end}}
-  {{end}}
+    command: bash -c "/root/config/set-config.sh"
   {{if (eq .Values.APACHE_ROLE "reverse-proxy")}}
     external_links:
       - {{.Values.EXTERNAL}}
-    {{if (eq .Values.APACHE_SSL "false")}}
-    command: |
-      bash -c "mv /root/config/custom-config.conf /etc/apache2/sites-available
-      apt-get update
-      apt-get -y upgrade
-      apt-get install -y build-essential &&
-      apt-get install -y libapache2-mod-proxy-html libxml2-dev &&
-      a2enmod proxy &&
-      a2enmod proxy_http &&
-      a2enmod proxy_ajp &&
-      a2enmod rewrite &&
-      a2enmod deflate &&
-      a2enmod headers &&
-      a2enmod proxy_balancer &&
-      a2enmod proxy_connect &&
-      a2enmod proxy_html &&
-      a2ensite custom-config.conf &&
-      a2dissite 000-default.conf &&
-      apache2-foreground"
-    {{end}}
-    {{if (eq .Values.APACHE_SSL "true")}}
-    command: |
-      bash -c "mv /root/config/custom-config.conf /etc/apache2/sites-available
-      mkdir /etc/apache2/ssl && 
-      openssl req -x509 -nodes -days 365 -newkey rsa:2048 -keyout /etc/apache2/ssl/apache.key -out /etc/apache2/ssl/apache.crt <<COMMANDBLOCK
-      ${COUNTRY}
-      ${STATE}
-      ${LOCALITY}
-      ${ORGANIZATION}
-      ${UNIT}
-      ${COMMON}
-      ${EMAIL}
-      COMMANDBLOCK
-      cat /etc/apache2/ssl/apache.crt /etc/apache2/ssl/apache.key > /etc/apache2/ssl/apache.pem
-      apt-get update
-      apt-get -y upgrade
-      apt-get install -y build-essential &&
-      apt-get install -y libapache2-mod-proxy-html libxml2-dev &&
-      a2enmod proxy &&
-      a2enmod proxy_http &&
-      a2enmod proxy_ajp &&
-      a2enmod rewrite &&
-      a2enmod deflate &&
-      a2enmod headers &&
-      a2enmod proxy_balancer &&
-      a2enmod proxy_connect &&
-      a2enmod proxy_html &&
-      a2enmod ssl &&
-      a2ensite custom-config.conf &&
-      a2dissite 000-default.conf &&
-      apache2-foreground"
-    {{end}}
   {{end}}
     labels:
       io.rancher.sidekicks: apache-config
@@ -111,6 +29,15 @@ services:
     environment:
       apache_conf: |
         ${APACHE_CONF}
+  {{if (eq .Values.APACHE_SSL "true")}}
+      country: {{.Values.COUNTRY}}
+      state: {{.Values.STATE}}
+      locality: {{.Values.LOCALITY}}
+      organization: {{.Values.ORGANIZATION}}
+      unit: {{.Values.UNIT}}
+      common: {{.Values.COMMON}}
+      email: {{.Values.EMAIL}}
+  {{end}}
     volumes:
       - config:/root
     stdin_open: true
