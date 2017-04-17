@@ -13,6 +13,8 @@ services:
     scale: {{.Values.APACHE_SCALE}}
     environment:
       apache_role: {{.Values.APACHE_ROLE}}
+    external_links:
+      - {{.Values.EXTERNAL}}
 {{if .Values.APACHE_CONF}}
     command: bash -c "chmod +x /root/config/set-config.sh && /root/config/set-config.sh"
     labels:
