@@ -11,6 +11,8 @@ services:
       - content:/var/www/html
       - config:/root/config
     scale: {{.Values.APACHE_SCALE}}
+    environment:
+      apache_role: {{.Values.APACHE_ROLE}}
 {{if .Values.APACHE_CONF}}
     command: bash -c "chmod +x /root/config/set-config.sh && /root/config/set-config.sh"
     labels:
