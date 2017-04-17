@@ -16,7 +16,7 @@ services:
       - config:/root/config
     scale: {{.Values.APACHE_SCALE}}
 {{if .Values.APACHE_CONF}}
-    command: bash -c "./root/config/set-config.sh"
+    command: ./root/config/set-config.sh
   {{if (eq .Values.APACHE_ROLE "reverse-proxy")}}
     external_links:
       - {{.Values.EXTERNAL}}
