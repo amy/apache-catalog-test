@@ -17,6 +17,14 @@ services:
       io.rancher.container.pull_image: always
     environment:
       apache_role: {{.Values.APACHE_ROLE}}
+      apache_ssl: {{.Values.APACHE_SSL}}
+      COUNTRY: {{.Values.COUNTRY}}
+      STATE: {{.Values.STATE}}
+      LOCALITY: {{.Values.LOCALITY}}
+      ORGANIZATION: {{.Values.ORGANIZATION}}
+      UNIT: {{.Values.UNIT}}
+      COMMON: {{.Values.COMMON}}
+      EMAIL: {{.Values.EMAIL}}
       apache_conf: |
         ${APACHE_CONF}
   apache-config:
