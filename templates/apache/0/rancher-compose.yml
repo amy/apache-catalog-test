@@ -65,6 +65,18 @@ catalog:
         - webserver
         - reverse-proxy
       required: true
+    - variable: "SERVER_ADMIN"
+      label: "Server Admin"
+      type: "string"
+      default: "webhost@localhost"
+    - variable: "SERVER_NAME"
+      label: "Server Name"
+      type: "string"
+      required: true
+    - variable: "SERVER_ALIAS"
+      label: "Server Admin"
+      type: "string"
+      required: false
     - variable: "EXTERNAL"
       label: "External service link"
       description: |
