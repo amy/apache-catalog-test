@@ -46,19 +46,13 @@ catalog:
       description: |
         Specify certificate name created in Rancher UI. Mandatory for 
         https, tls, and sni protocols.
-      label: "Certificate Name"
+      label: "Loadbalancer Certificate Name"
       type: certificate
       required: false
     - variable: "CUSTOM"
       description: |
         Enter your custom load balancer config here for custom load balancer protocol.
-      label: "Custom load balancer config"
-      type: multiline
-      required: false
-    - variable: "APACHE_CONF"
-      description: |
-        Enter your apache configuration file here.
-      label: "Apache Configuration"
+      label: "Load Balancer Custom Config"
       type: multiline
       required: false
     - variable: "APACHE_ROLE"
@@ -74,10 +68,18 @@ catalog:
     - variable: "EXTERNAL"
       label: "External service link"
       description: |
-        Choose the service your Apache server will reverse-proxy in the following format:
-        stack_name/service_name:service_alias
+        Required for a reverse-proxy Apache server. Choose the service Apache will proxy.
       type: service
       required: false
+    - variable: "PROXY"
+      label: "Service that Apache will proxy."
+      type: service
+      required: false
+      type: service
+    - variable: "PROXY_PORT"
+      label: "Port exposed on service."
+      required: false
+      type: int
     - variable: "APACHE_SSL"
       description: |
         Enable SSL termination for Apache webserver or proxy.
@@ -85,6 +87,20 @@ catalog:
       type: "boolean"
       default: false
       required: true
+    - variable: "SSL_KEY"
+      description: |
+        Upload your own SSL key to Apache server. If both key and cert are not uploaded, a self signed 
+        key and certificate are automatically generated under /etc/apache2/ssl of the apache server.
+      label: "Apache SSL Key"
+      type: "multiline"
+      required: false
+    - variable: "SSL_KEY"
+      description: |
+        Upload your own SSL certificate to Apache server. If both key and certificate are not uploaded, a self 
+        signed key and certificate are automatically generated under /etc/apache2/ssl of the apache server.
+      label: "Apache SSL Certificate"
+      type: "multiline"
+      required: false
     - variable: "COUNTRY"
       description: |
         Country Name (2 letter code) [GB]
@@ -126,4 +142,10 @@ catalog:
         Email Address
       label: "Email Address"
       type: "string"
+      required: false
+    - variable: "APACHE_CONF"
+      description: |
+        If you choose not to use our Apache templates, enter your own apache configuration file here.
+      label: "Apache Custom Configuration"
+      type: multiline
       required: false
