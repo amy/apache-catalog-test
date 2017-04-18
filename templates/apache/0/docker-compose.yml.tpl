@@ -6,14 +6,16 @@ services:
     restart: always
     ports:
       - {{.Values.PUBLISH_PORT}}:80
+{{if (eq .Values.APACHE_SSL "true")}}
       - 443:443
+{{end}}
     volumes:
       - content:/var/www/html
       - config:/root/config
     scale: {{.Values.APACHE_SCALE}}
+{{if .Values.APACHE_CONF}}
     external_links:
       - {{.Values.EXTERNAL}}
-{{if .Values.APACHE_CONF}}
     command: bash -c "chmod +x /root/config/set-config.sh && /root/config/set-config.sh"
     labels:
       io.rancher.sidekicks: apache-config

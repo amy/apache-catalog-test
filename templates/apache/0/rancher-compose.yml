@@ -76,7 +76,7 @@ catalog:
       description: |
         Choose the service your Apache server will reverse-proxy in the following format:
         stack_name/service_name:service_alias
-      type: "string"
+      type: service
       required: false
     - variable: "APACHE_SSL"
       description: |
