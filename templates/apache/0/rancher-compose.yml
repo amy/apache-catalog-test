@@ -66,32 +66,45 @@ catalog:
         - reverse-proxy
       required: true
     - variable: "SERVER_ADMIN"
+      description: |
+        Set a contact address that the server will include in error messages.
       label: "Server Admin"
       type: "string"
       default: "webhost@localhost"
     - variable: "SERVER_NAME"
+      description: |
+        Enter a hostname that the server uses to identify itself. (Ex: test.com)
       label: "Server Name"
       type: "string"
       required: true
     - variable: "SERVER_ALIAS"
-      label: "Server Admin"
+      description: |
+        Choose an alternate hostname that the server will use to identify itself. 
+        Deliminate multiple aliases with spaces. (Ex: www.test.com test foo.test.com)
+        Wildcards may be used as well. (Ex: *.example.com)
+      label: "Server Alias"
       type: "string"
       required: false
     - variable: "EXTERNAL"
       label: "External service link"
       description: |
-        Required for a reverse-proxy Apache server. Choose the service Apache will proxy.
+        Required for a reverse-proxy Apache server. Choose the stack and service that Apache will proxy.
       type: service
       required: false
     - variable: "PROXY"
-      label: "Service that Apache will proxy."
-      type: service
+      description: |
+        Enter only the name of the server that Apache will proxy. Do not use the stack name!
+        For instance, if you have "tomcat1/tomcat" as your external service link, only "tomcat"
+        should be entered here.
+      label: "Proxied Service"
+      type: "string"
       required: false
-      type: service
     - variable: "PROXY_PORT"
-      label: "Port exposed on service."
+      description: Port exposed on proxied service.
+      label: "Proxy Port"
       required: false
       type: int
+      default: 8080
     - variable: "APACHE_SSL"
       description: |
         Enable SSL termination for Apache webserver or proxy.
