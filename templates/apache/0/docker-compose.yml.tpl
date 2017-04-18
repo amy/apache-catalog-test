@@ -13,10 +13,10 @@ services:
       - content:/var/www/html
       - config:/root/config
     scale: {{.Values.APACHE_SCALE}}
+    command: bash -c "chmod +x /root/config/set-config.sh && /root/config/set-config.sh"
 {{if .Values.APACHE_CONF}}
     external_links:
       - {{.Values.EXTERNAL}}
-    command: bash -c "chmod +x /root/config/set-config.sh && /root/config/set-config.sh"
     labels:
       io.rancher.sidekicks: apache-config
       io.rancher.container.pull_image: always
