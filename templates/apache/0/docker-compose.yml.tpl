@@ -32,6 +32,7 @@ services:
       EMAIL: {{.Values.EMAIL}}
       apache_conf: |
         ${APACHE_CONF}
+{{end}}
   apache-config:
     tty: true
     image: amycodes/apache-config:latest
@@ -41,7 +42,6 @@ services:
     labels:
       io.rancher.container.pull_image: always
       io.rancher.container.start_once: true
-{{end}}
 volumes:
   content:
     driver: {{.Values.VOLUME_DRIVER}}
