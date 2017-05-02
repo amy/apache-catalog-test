@@ -31,23 +31,16 @@ services:
       serverAlias: {{.Values.SERVER_ALIAS}}
 {{if (eq .Values.APACHE_SSL "true")}}
       sslKey: |-
-        {{.Values.SSL_KEY}}
+        ${SSL_KEY}
       sslCrt: |-
-        {{.Values.SSL_CRT}}
-      country: {{.Values.COUNTRY}}
-      state: {{.Values.STATE}}
-      locality: {{.Values.LOCALITY}}
-      organization: {{.Values.ORGANIZATION}}
-      unit: {{.Values.UNIT}}
-      common: {{.Values.COMMON}}
-      email: {{.Values.EMAIL}}
+        ${SSL_CRT}
 {{end}}
 {{if (eq .Values.APACHE_ROLE "reverse-proxy")}}
       proxy: {{.Values.PROXY}}
       proxyPort: {{.Values.PROXY_PORT}}
 {{end}}
 {{if .Values.APACHE_CONF}}
-      apache_conf: |
+      apache_conf: |-
         ${APACHE_CONF}
 {{end}}
   apache-config:
