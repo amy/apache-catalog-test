@@ -29,10 +29,10 @@ services:
       serverAdmin: {{.Values.SERVER_ADMIN}}
       serverName: {{.Values.SERVER_NAME}}
       serverAlias: {{.Values.SERVER_ALIAS}}
-{{if (eq .Values.APACHE_SSL "true")}}
-      sslKey: |
+{{if (eq .Values.APACHE_SSL true)}}
+      sslKey: |-
         {{.Values.SSL_KEY}}
-      sslCrt: |
+      sslCrt: |-
         {{.Values.SSL_CRT}}
 {{end}}
 {{if (eq .Values.APACHE_ROLE "reverse-proxy")}}
