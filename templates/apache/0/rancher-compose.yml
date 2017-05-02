@@ -126,48 +126,6 @@ catalog:
       label: "Apache SSL Certificate"
       type: "multiline"
       required: false
-    - variable: "COUNTRY"
-      description: |
-        Country Name (2 letter code) [GB]
-      label: "Country Name"
-      type: "string"
-      required: false
-    - variable: "STATE"
-      description: |
-        State or Province Name (full name) [Berkshire]
-      label: "State or Province Name"
-      type: "string"
-      required: false
-    - variable: "LOCALITY"
-      description: |
-        Locality Name (eg, city) [Newbury]
-      label: "Locality Name"
-      type: "string"
-      required: false
-    - variable: "ORGANIZATION"
-      description: |
-        Organization Name (eg, company) [My Company Ltd]
-      label: "Organization Name"
-      type: "string"
-      required: false
-    - variable: "UNIT"
-      description: |
-        Organizational Unit Name (eg, section)
-      label: "Organizational Unit Name"
-      type: "string"
-      required: false
-    - variable: "COMMON"
-      description: |
-        Common Name (eg, your name or your server's hostname)
-      label: "Common Name"
-      type: "string"
-      required: false
-    - variable: "EMAIL"
-      description: |
-        Email Address
-      label: "Email Address"
-      type: "string"
-      required: false
     - variable: "APACHE_CONF"
       description: |
         If you choose not to use our Apache templates, enter your own apache configuration file here.

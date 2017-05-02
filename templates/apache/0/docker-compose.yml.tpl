@@ -34,13 +34,6 @@ services:
         {{.Values.SSL_KEY}}
       sslCrt: |
         {{.Values.SSL_CRT}}
-      country: {{.Values.COUNTRY}}
-      state: {{.Values.STATE}}
-      locality: {{.Values.LOCALITY}}
-      organization: {{.Values.ORGANIZATION}}
-      unit: {{.Values.UNIT}}
-      common: {{.Values.COMMON}}
-      email: {{.Values.EMAIL}}
 {{end}}
 {{if (eq .Values.APACHE_ROLE "reverse-proxy")}}
       proxy: {{.Values.PROXY}}
