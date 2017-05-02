@@ -30,9 +30,9 @@ services:
       serverName: {{.Values.SERVER_NAME}}
       serverAlias: {{.Values.SERVER_ALIAS}}
 {{if (eq .Values.APACHE_SSL "true")}}
-      sslKey: |
+      sslKey: |-
         {{.Values.SSL_KEY}}
-      sslCrt: |
+      sslCrt: |-
         {{.Values.SSL_CRT}}
       country: {{.Values.COUNTRY}}
       state: {{.Values.STATE}}
