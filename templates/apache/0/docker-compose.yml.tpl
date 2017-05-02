@@ -30,9 +30,9 @@ services:
       serverName: {{.Values.SERVER_NAME}}
       serverAlias: {{.Values.SERVER_ALIAS}}
 {{if (eq .Values.APACHE_SSL true)}}
-      sslKey: |-
+      sslKey: |
         {{.Values.SSL_KEY}}
-      sslCrt: |-
+      sslCrt: |
         {{.Values.SSL_CRT}}
 {{end}}
 {{if (eq .Values.APACHE_ROLE "reverse-proxy")}}
@@ -40,7 +40,7 @@ services:
       proxyPort: {{.Values.PROXY_PORT}}
 {{end}}
 {{if .Values.APACHE_CONF}}
-      apache_conf: |-
+      apache_conf: |
         ${APACHE_CONF}
 {{end}}
   apache-config:
