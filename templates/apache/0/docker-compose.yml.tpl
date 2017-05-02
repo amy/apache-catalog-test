@@ -29,11 +29,18 @@ services:
       serverAdmin: {{.Values.SERVER_ADMIN}}
       serverName: {{.Values.SERVER_NAME}}
       serverAlias: {{.Values.SERVER_ALIAS}}
-{{if (eq .Values.APACHE_SSL true)}}
+{{if (eq .Values.APACHE_SSL "true")}}
       sslKey: |
         {{.Values.SSL_KEY}}
       sslCrt: |
         {{.Values.SSL_CRT}}
+      country: {{.Values.COUNTRY}}
+      state: {{.Values.STATE}}
+      locality: {{.Values.LOCALITY}}
+      organization: {{.Values.ORGANIZATION}}
+      unit: {{.Values.UNIT}}
+      common: {{.Values.COMMON}}
+      email: {{.Values.EMAIL}}
 {{end}}
 {{if (eq .Values.APACHE_ROLE "reverse-proxy")}}
       proxy: {{.Values.PROXY}}

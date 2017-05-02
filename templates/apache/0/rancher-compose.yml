@@ -130,5 +130,5 @@ catalog:
       description: |
         If you choose not to use our Apache templates, enter your own apache configuration file here.
       label: "Apache Custom Configuration"
-      type: "multiline"
+      type: multiline
       required: false
