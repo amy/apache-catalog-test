@@ -30,10 +30,8 @@ services:
       serverName: {{.Values.SERVER_NAME}}
       serverAlias: {{.Values.SERVER_ALIAS}}
 {{if (eq .Values.APACHE_SSL "true")}}
-      sslKey: |-
-        ${SSL_KEY}
-      sslCrt: |-
-        ${SSL_CRT}
+      sslKey: {{ .Values.SSL_KEY }}
+      sslCrt: {{ .Values.SSL_CRT }}
 {{end}}
 {{if (eq .Values.APACHE_ROLE "reverse-proxy")}}
       proxy: {{.Values.PROXY}}
