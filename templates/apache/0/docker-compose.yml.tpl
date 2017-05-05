@@ -6,7 +6,7 @@ services:
     restart: always
     ports:
 {{if (eq .Values.APACHE_SSL false)}}
-      - {{.Values.PUBLISH_PORT}}:80
+      - "{{.Values.PUBLISH_PORT}}:80"
 {{end}}
       - "{{.Values.PUBLISH_PORT}}:443"
     volumes:
