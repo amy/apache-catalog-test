@@ -119,7 +119,7 @@ catalog:
       label: "Apache SSL Key"
       type: "multiline"
       required: false
-    - variable: "SSL_KEY"
+    - variable: "SSL_CRT"
       description: |
         Upload your own SSL certificate to Apache server. If both key and certificate are not uploaded, a self 
         signed key and certificate are automatically generated under /etc/apache2/ssl of the apache server.
