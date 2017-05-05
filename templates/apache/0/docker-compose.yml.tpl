@@ -5,10 +5,7 @@ services:
     image: php:7.1.3-apache
     restart: always
     ports:
-{{if (eq .Values.APACHE_SSL false)}}
-        - "{{.Values.PUBLISH_PORT}}:80"
-{{end}}
-        - "{{.Values.PUBLISH_PORT}}:443"
+      - {{.Values.PUBLISH_PORT}}:443
     volumes:
       - content:/var/www/html
       - config:/root/config
