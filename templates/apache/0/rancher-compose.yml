@@ -84,7 +84,7 @@ catalog:
         Wildcards may be used as well. (Ex: *.example.com)
       label: "Server Alias"
       type: "string"
-      required: false
+      required: true
     - variable: "EXTERNAL"
       label: "External service link"
       description: |
