@@ -31,9 +31,9 @@ services:
       serverAlias: {{.Values.SERVER_ALIAS}}
 {{if (eq .Values.APACHE_SSL "true")}}
       sslKey: |-
-        {{ .Values.SSL_KEY }}
+        ${SSL_KEY}
       sslCrt: |-
-        {{ .Values.SSL_CRT }}
+        ${SSL_CRT}
 {{end}}
 {{if (eq .Values.APACHE_ROLE "reverse-proxy")}}
       proxy: {{.Values.PROXY}}
