@@ -8,7 +8,9 @@ services:
 {{if (eq .Values.APACHE_SSL "false")}}
         - "{{.Values.PUBLISH_PORT}}:80"
 {{end}}
+{{if (eq .Values.APACHE_SSL "true")}}
         - "{{.Values.PUBLISH_PORT}}:443"
+{{end}}
     volumes:
       - content:/var/www/html
       - config:/root/config
