@@ -27,7 +27,7 @@ services:
       serverAdmin: {{.Values.SERVER_ADMIN}}
       serverName: {{.Values.SERVER_NAME}}
       serverAlias: {{.Values.SERVER_ALIAS}}
-{{if (eq .Values.APACHE_SSL true)}}
+{{if (eq .Values.APACHE_SSL "true")}}
       sslKey: |-
         ${SSL_KEY}
       sslCrt: |-
