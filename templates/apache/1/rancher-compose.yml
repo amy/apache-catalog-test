@@ -1,0 +1,135 @@
+version: '2'
+catalog:
+  name: Apache
+  version: v4.3.18-rancher1
+  description: "Serves PHP web apps populated in volume"
+  minimum_rancher_version: v1.5.0
+  upgrade_from: v4.3.17-rancher1
+  questions:
+    - variable: "APACHE_SCALE"
+      description: |
+        Number of Apache nodes.
+      label: "Apache nodes"
+      type: int
+      required: true
+      default: 1
+    - variable: "VOLUME_DRIVER"
+      description: |
+        Docker volume driver
+      label: "Volume Driver"
+      type: "string"
+      default: "local"
+    - variable: "PUBLISH_PORT"
+      description: |
+        Customize your external publish port, defaults to port 80.
+      label: "Publish Port"
+      type: int
+      required: false
+      default: 80
+    - variable: "PROTOCOL"
+      description: |
+        Specify your load balancer communication protocol. Default "none" 
+        will expose a port on the Apache webserver and no loadbalancer 
+        will be placed in front of the Apache server.
+      label: "Loadbalancer Protocol"
+      type: enum
+      required: true
+      default: none
+      options:
+        - none
+        - http
+        - tcp
+        - https
+        - tls
+        - sni
+        - custom
+    - variable: "CERT_NAME"
+      description: |
+        Specify certificate name created in Rancher UI. Mandatory for 
+        https, tls, and sni protocols.
+      label: "Loadbalancer Certificate Name"
+      type: certificate
+      required: false
+    - variable: "CUSTOM"
+      description: |
+        Enter your custom load balancer config here for custom load balancer protocol.
+      label: "Load Balancer Custom Config"
+      type: multiline
+      required: false
+    - variable: "APACHE_ROLE"
+      description: |
+        Choose what type of role the server plays: webserver, reverse proxy, or ssl enabled reverse proxy.
+      label: "Apache Role"
+      type: enum
+      default: webserver
+      options:
+        - webserver
+        - reverse-proxy
+      required: true
+    - variable: "SERVER_ADMIN"
+      description: |
+        Set a contact address that the server will include in error messages.
+      label: "Server Admin"
+      type: "string"
+      default: "webhost@localhost"
+    - variable: "SERVER_NAME"
+      description: |
+        Enter a hostname that the server uses to identify itself. (Ex: test.com)
+      label: "Server Name"
+      type: "string"
+      required: true
+    - variable: "SERVER_ALIAS"
+      description: |
+        Choose an alternate hostname that the server will use to identify itself. 
+        Deliminate multiple aliases with spaces. (Ex: www.test.com test foo.test.com)
+        Wildcards may be used as well. (Ex: *.example.com)
+      label: "Server Alias"
+      type: "string"
+      required: true
+    - variable: "EXTERNAL"
+      label: "External service link"
+      description: |
+        Required for a reverse-proxy Apache server. Choose the stack and service that Apache will proxy.
+      type: service
+      required: false
+    - variable: "PROXY"
+      description: |
+        Enter only the name of the server that Apache will proxy. Do not use the stack name!
+        For instance, if you have "tomcat1/tomcat" as your external service link, only "tomcat"
+        should be entered here.
+      label: "Proxied Service"
+      type: "string"
+      required: false
+    - variable: "PROXY_PORT"
+      description: Port exposed on proxied service.
+      label: "Proxy Port"
+      required: false
+      type: int
+      default: 8080
+    - variable: "APACHE_SSL"
+      description: |
+        Enable SSL termination for Apache webserver or proxy.
+      label: "Apache SSL Termination"
+      type: "boolean"
+      default: false
+      required: true
+    - variable: "SSL_KEY"
+      description: |
+        Upload your own SSL key to Apache server. If both key and cert are not uploaded, a self signed 
+        key and certificate are automatically generated under /etc/apache2/ssl of the apache server.
+      label: "Apache SSL Key"
+      type: "multiline"
+      required: false
+    - variable: "SSL_CRT"
+      description: |
+        Upload your own SSL certificate to Apache server. If both key and certificate are not uploaded, a self 
+        signed key and certificate are automatically generated under /etc/apache2/ssl of the apache server.
+      label: "Apache SSL Certificate"
+      type: "multiline"
+      required: false
+    - variable: "APACHE_CONF"
+      description: |
+        If you choose not to use our Apache templates, enter your own apache configuration file here.
+      label: "Apache Custom Configuration"
+      type: "multiline"
+      required: false
