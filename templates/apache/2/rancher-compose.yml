@@ -4,7 +4,7 @@ catalog:
   version: v4.3.19
   description: "Serves PHP web apps populated in volume"
   minimum_rancher_version: v1.5.0
-  upgradeFrom: v4.3.18
+  upgrade_from: v4.3.18
   questions:
     - variable: "APACHE_SCALE"
       description: |
