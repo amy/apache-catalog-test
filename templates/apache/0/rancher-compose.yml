@@ -1,5 +1,4 @@
 version: '2'
-catalog:
   name: Apache
   version: v1.5.4-vancher1-1
   description: "Serves PHP web apps populated in volume"
