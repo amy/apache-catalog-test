@@ -1,7 +1,6 @@
 version: '2'
 name: Apache
-version: v1.5.5-vancher1-1
-description: "Serves PHP web apps populated in volume"
+template_description: "Serves PHP web apps populated in volume"
 minimum_rancher_version: v1.5.0
 upgrade_from: v1.5.4-vancher1-1
 questions:
