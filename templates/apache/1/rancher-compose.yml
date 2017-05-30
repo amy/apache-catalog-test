@@ -1,3 +1,4 @@
+version: '2'
 catalog: 
   name: Apache
   description: "Serves PHP web apps populated in volume"

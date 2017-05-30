@@ -1,3 +1,4 @@
+version: '2'
 catalog:  
   name: Apache
   version: v1.5.6-vancher1-1
