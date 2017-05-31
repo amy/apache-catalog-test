@@ -1,7 +1,7 @@
 name: Apache
 version: v1.5.4-vancher1-1
 description: "Serves PHP web apps populated in volume"
-minimum_rancher_version: v1.5.0
+minimumRancheVersion: v1.5.0
 questions:
   - variable: "APACHE_SCALE"
     description: |
