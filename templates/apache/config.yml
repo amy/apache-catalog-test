@@ -6,4 +6,4 @@ category: Apache
 maintainer: "Amy Chen <amy@rancher.com>"
 minimum_rancher_version: v1.5.0
 license: Apache License
-project_URL: https://httpd.apache.org/
+projectURL: https://httpd.apache.org/
