@@ -1,11 +1,13 @@
-name: Apache
-version: v1.5.4-vancher1-1
-description: "Test for Rancher Version"
-questions:
-  - variable: "TEST"
-    description: |
-      test
-    label: "test"
-    type: int
-    required: true
-    default: 1
+version: '2'
+catalog:
+  name: Apache
+  version: v1.5.4-vancher1-1
+  description: "Test for Rancher Version"
+  questions:
+    - variable: "TEST"
+      description: |
+        test
+      label: "test"
+      type: int
+      required: true
+      default: 1
