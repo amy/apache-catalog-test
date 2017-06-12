@@ -1,0 +1,4 @@
+alt-config-fields:
+  image: busybox
+  tty: true
+  stdin_open: true

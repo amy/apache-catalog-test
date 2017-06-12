@@ -1,0 +1,5 @@
+name: Alternative Config Fields
+description: |
+  This template tests default versions. There is no default version.
+version: 3.0.0
+project_url: www.test.com
