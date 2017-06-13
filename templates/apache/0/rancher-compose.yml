@@ -1,7 +1,7 @@
 version: '2'
 catalog:
   name: Apache
-  version: v1.5.5-vancher1-1
+  version: v1.5.4-vancher1-1
   description: "Test for Rancher Version"
   questions:
     - variable: "TEST"
