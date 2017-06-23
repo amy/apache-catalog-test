@@ -1,9 +1,8 @@
-name: Apache Webserver
+name: Affinity Test 1
 description: |
-  Apache Stuff
-version: 0.0.1
-category: Apache
-maintainer: "Amy Chen <amy@rancher.com>"
-minimum_rancher_version: v1.5.0
-license: Apache License
-projectURL: https://httpd.apache.org/
+  This template sets up a service that has a label.  Then creates another service that relies on that label.  Both should end up on the same host.
+version: 2.0.0
+category: Test
+maintainer: Tani Fiduccia
+license: 9087 license
+projectURL: http://www.google.com
