@@ -3,9 +3,6 @@
   version: "2.0.0"
   description: Description in the rancher compose.
   minimum_rancher_version: v0.46.0
-  labels:
-    "label1" : "value1"
-    "label2" : "value4"
 servicerelyingonlable:
   scale: 1
 Service1withlabel:
