@@ -1,4 +1,6 @@
-ghost:
-  image: nginx
-  environment:
-    public_port: ${public_port}
+version: '2'
+services:
+  ghost:
+    image: nginx
+    environment:
+      public_port: ${public_port}
