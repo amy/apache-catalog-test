@@ -1,7 +1,7 @@
 version: '2'
 catalog:
   name: traefik
-  version: v1.3.6-rancher1
+  version: 2.0.0
   description: |
     (Experimental) Traefik load balancer.
   questions:
