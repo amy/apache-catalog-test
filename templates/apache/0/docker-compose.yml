@@ -2,3 +2,5 @@ version: '2'
 services:
   test:
     image: nginx
+    environment:
+      - test: ${test}
