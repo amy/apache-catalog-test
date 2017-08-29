@@ -4,3 +4,9 @@ catalog:
   version: 2.0.0
   description: |
     (Experimental) Traefik load balancer.
+  questions:
+    - variable: test
+      description: "public port to access the blog"
+      label: "Public Port"
+      required: true
+      type: "string"
