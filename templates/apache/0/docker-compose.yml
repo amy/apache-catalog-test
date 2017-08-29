@@ -1,6 +1,4 @@
-version: '2'
-services:
-  test:
-    image: nginx
-    environment:
-      - test: ${test}
+ghost:
+  image: nginx
+  environment:
+    - ${public_port}

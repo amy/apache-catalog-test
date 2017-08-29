@@ -1,12 +1,13 @@
-version: '2'
-catalog:
-  name: traefik
-  version: 2.0.0
-  description: |
-    (Experimental) Traefik load balancer.
+
+.catalog:
+  name: "Ghost"
+  version: "v0.1-educaas"
+  description: "Blog powered by Ghost. Requires no database"
+  minimum_rancher_version: v0.51.0
   questions:
-    - variable: test
+    - variable: public_port
       description: "public port to access the blog"
       label: "Public Port"
       required: true
       type: "int"
+ghost:
