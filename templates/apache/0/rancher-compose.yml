@@ -9,4 +9,4 @@ catalog:
       description: "public port to access the blog"
       label: "Public Port"
       required: true
-      type: "multiline"
+      type: "int"
