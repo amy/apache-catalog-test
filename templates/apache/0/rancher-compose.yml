@@ -4,8 +4,3 @@ catalog:
   version: 2.0.0
   description: |
     (Experimental) Traefik load balancer.
-  questions:
-    - variable: "test"
-      description: "Host label where to run traefik service."
-      label: "Host label:"
-      type: "int"
