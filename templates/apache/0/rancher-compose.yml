@@ -8,6 +8,4 @@ catalog:
     - variable: "test"
       description: "Host label where to run traefik service."
       label: "Host label:"
-      required: true
-      default: "traefik_lb=true" 
       type: "string"
