@@ -1,0 +1,13 @@
+version: '2'
+catalog:
+  name: traefik
+  version: v1.3.6-rancher1
+  description: |
+    (Experimental) Traefik load balancer.
+  questions:
+    - variable: "test"
+      description: "Host label where to run traefik service."
+      label: "Host label:"
+      required: true
+      default: "traefik_lb=true" 
+      type: "string"
