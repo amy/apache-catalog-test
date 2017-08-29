@@ -5,3 +5,6 @@ version: 2.0.0
 maintainer: Tani Fiduccia
 license: 9087 license
 projectURL: http://www.google.com
+labels:
+  key1: value1
+  key2: value2
