@@ -1,7 +1,7 @@
 .catalog:
   name: "Ghost"
-    version: "v0.1-educaas"
-  description: "Blog powered by Ghost. Requires no database"
+  version: "v0.1-educaas"
+    description: "Blog powered by Ghost. Requires no database"
   minimum_rancher_version: v0.51.0
   questions:
     - variable: "public_port"
