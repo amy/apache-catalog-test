@@ -1,3 +1,4 @@
+catalog:
 name: "Ghost"
 version: "v0.1-educaas"
 description: "Blog powered by Ghost. Requires no database"
