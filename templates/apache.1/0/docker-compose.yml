@@ -1,6 +1,6 @@
 version: '2'
 services:
-  ghost:
+  ghost1:
     image: nginx
     environment:
       public_port: ${public_port}
