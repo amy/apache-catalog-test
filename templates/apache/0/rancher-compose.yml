@@ -1,6 +1,6 @@
 catalog:  
   name: "Ghost1"
-  version: "v0.1-educaas"
+  version: "v1.0.0"
   description: "Blog powered by Ghost. Requires no database"
   uuid: ghost-0
   minimum_rancher_version: v0.51.0
