@@ -1,6 +1,0 @@
-version: '2'
-services:
-  ghost2:
-    image: nginx
-    environment:
-      public_port: ${public_port}
