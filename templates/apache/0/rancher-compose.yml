@@ -4,12 +4,19 @@ catalog:
   description: "Blog powered by Ghost. Requires no database"
   uuid: ghost-0
   minimum_rancher_version: v0.51.0
+  is_system: true
   questions:
-    - variable:
-      label:
-      description: |
+    - variable: public_port
+      description: "public port to access the blog"
+      label: "Public Port"
+      required: true
+      default: "80"
+      type: "int"
+    - variable: options_thing
+      label: "options thing"
+      description: "options thing"
       type: enum   
-      options:
+      options: # List of options if using type of `enum`
         - Option 1
         - Option 2
 ghost:
