@@ -4,15 +4,12 @@ catalog:
   description: "Blog powered by Ghost. Requires no database"
   uuid: ghost-0
   minimum_rancher_version: v0.51.0
-  is_system: true
-  labels:
-    "label1" : "value1"
-    "label2" : "value2"
   questions:
-    - variable: public_port
-      description: "public port to access the blog"
-      label: "Public Port"
-      required: true
-      default: "80"
-      type: "int"
+    - variable:
+      label:
+      description: |
+      type: enum   
+      options:
+        - Option 1
+        - Option 2
 ghost:
