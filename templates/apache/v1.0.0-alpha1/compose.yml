@@ -259,7 +259,7 @@ services:
 {{- end }}
 
 catalog:
-  minimum_rancher_version: "v1.6.7"
+  maximum_rancher_version: "v1.6.7"
   questions:
   - variable: DNS_RECURSER_TIMEOUT
     label: Timeout for Rancher DNS Recurser
