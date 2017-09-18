@@ -1,1 +1,4 @@
-name: test1
+name: HELLO
+category: Framework
+labels:
+  io.rancher.certified: rancher
